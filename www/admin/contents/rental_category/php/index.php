@@ -35,7 +35,6 @@ $mainObject = new $class_name( $objManage );
 // データ取得
 $t_rental_category = $mainObject->GetSearchList( $arr_post );
 
-
 // クラス削除
 unset( $objManage );
 unset( $mainObject );
@@ -48,9 +47,9 @@ $smarty = new MySmarty("admin");
 $smarty->compile_dir .= _CONTENTS_DIR. "/";
 
 // テンプレートに設定
-$smarty->assign( "message"            , $message                      );
-$smarty->assign( 't_rental_category' , $t_rental_category["data"]   );
-$smarty->assign( 'page_navi'          , $t_rental_category["page"]   );
+$smarty->assign( "message"            , $message            );
+$smarty->assign( 't_rental_category'  , $t_rental_category  );
+
 if( !empty($_ARR_IMAGE) ){
 	$smarty->assign( '_ARR_IMAGE', $_ARR_IMAGE );
 }

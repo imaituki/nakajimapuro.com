@@ -144,6 +144,7 @@ class AD_rental_category {
 
 		// 登録データの作成
 		$arrVal = $this->_DBconn->arrayKeyMatchFecth( $arrVal, "/^[^\_]/" );
+		$arrSql["display_num"] = "( SELECT IFNULL( max_num + 1, 1 ) FROM ( SELECT MAX( display_num ) AS max_num FROM " . $this->_CtrTable . " ) AS maxnm ) ";
 		$arrVal["entry_date"]  = date( "Y-m-d H:i:s" );
 		$arrVal["update_date"] = date( "Y-m-d H:i:s" );
 
@@ -258,6 +259,33 @@ class AD_rental_category {
 
 	}
 
+	//-------------------------------------------------------
+	// 関数名：sort
+	// 引  数：$sortIds - ソート順 ID
+	//       ：$sortKey - 並び替えのフィールド名
+	// 戻り値：true - 正常, false - 異常
+	// 内  容：並び替え
+	//-------------------------------------------------------
+	function sort( $sortIds, $sortKey ) {
+
+		// 初期化
+		$res = false;
+
+		// データチェック
+		if( !empty( $sortIds ) ) {
+
+			// 変数セット
+			$this->_DBconn->_ADODB->query("set @a = 0;");
+
+			// ソート
+			$res = $this->_DBconn->update( $this->_CtrTable, null, array( "display_num" => "( @a := @a + 1 )" ), $this->_CtrTablePk . " IN( " . $sortIds . " ) ORDER BY FIELD( " . $sortKey . ", " . $sortIds . " ) " );
+
+		}
+
+		// 戻り値
+		return $res;
+
+	}
 
 	//-------------------------------------------------------
 	// 関数名：GetSearchList
@@ -267,19 +295,19 @@ class AD_rental_category {
 	// 内  容：商品カテゴリマスタ検索を行いデータを取得
 	//-------------------------------------------------------
 	function GetSearchList( $search, $option = null ) {
-
+		
 		// SQL配列
 		$creation_kit = array(  "select" => "*",
 								"from"   => $this->_CtrTable,
 								"where"  => "1 ",
-								"order"  => $this->_CtrTablePk . " asc"
+								"order"  => "display_num ASC"
 							);
+
 
 		// 検索条件
 		if( !empty( $search["search_keyword"] ) ) {
 			$creation_kit["where"] .= "AND ( " . $this->_DBconn->createWhereSql( $search["search_keyword"], "name", "LIKE", "OR", "%string%" ) . " ) ";
 		}
-
 
 		// 取得条件
 		if( empty( $option ) ) {
@@ -293,13 +321,12 @@ class AD_rental_category {
 								 "PageFileName"    => "javascript:changePage(%d);" );
 
 			// オプション
-			$option = array( "fetch" => _DB_FETCH_ALL,
-							 "page"  => $_PAGE_INFO );
+			$option = array( "fetch" => _DB_FETCH_ALL );
 
 		}
 
 		// データ取得
-		$res = $this->_DBconn->selectCtrl( $creation_kit, $option );
+		$res = $this->_DBconn->selectCtrl( $creation_kit, array( "fetch" => _DB_FETCH_ALL ) );
 
 		// 戻り値
 		return $res;

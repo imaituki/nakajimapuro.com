@@ -9,6 +9,7 @@
 	<script src="{$_ADMIN.home}/common/js/lightbox/import.js"></script>
 	<script src="{$_ADMIN.home}/common/js/plugins/datapicker/bootstrap-datepicker-import.js"></script>
 	<script src="{$_ADMIN.home}/common/js/list.js"></script>
+	<script src="../js/script.js"></script>
 </head>
 <body class="fixed-sidebar no-skin-config">
 <div id="wrapper">
