@@ -295,7 +295,6 @@ class AD_rental_category {
 	// 内  容：商品カテゴリマスタ検索を行いデータを取得
 	//-------------------------------------------------------
 	function GetSearchList( $search, $option = null ) {
-		
 		// SQL配列
 		$creation_kit = array(  "select" => "*",
 								"from"   => $this->_CtrTable,
@@ -327,7 +326,7 @@ class AD_rental_category {
 
 		// データ取得
 		$res = $this->_DBconn->selectCtrl( $creation_kit, array( "fetch" => _DB_FETCH_ALL ) );
-
+		
 		// 戻り値
 		return $res;
 

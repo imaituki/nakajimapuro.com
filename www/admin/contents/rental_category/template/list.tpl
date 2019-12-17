@@ -5,7 +5,7 @@ sortableInit();
 {/literal}
 
 {include file=$template_pagenavi}
-<table class="footable table table-stripped toggle-arrow-tiny tbl_1" data-page-size="15">
+<table class="footable table table-stripped toggle-arrow-tiny tbl_1" data-page-size="15" id="sortable-table">
 	<thead>
 		<tr>
 			<th></th>
