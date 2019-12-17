@@ -341,28 +341,19 @@ class AD_rental {
 			$this->_FN_file->delImage( $this->_ARR_IMAGE, $tmp );
 
 		}
-		// ファイル設定ループ
-		if( !empty($this->_ARR_FILE) && is_array($this->_ARR_FILE) ){
-
-			foreach( $this->_ARR_FILE as $key => $val ) {
-				$select[] = $val["name"];
-			}
-
-			// SQL配列
-			$creation_kit  = array( "select" => implode( ",", $select ),
-									"from"   => $this->_CtrTable,
-									"where"  => $this->_CtrTablePk . " = " . $id );
-
-			// データ取得
-			$tmp = $this->_DBconn->selectCtrl( $creation_kit, array( "fetch" => _DB_FETCH ) );
-
-			// 画像削除
-			$this->_FN_file->delFile( $this->_ARR_FILE, $tmp );
-
-		}
 
 		// 更新
-		$res = $this->_DBconn->delete( $this->_CtrTable, $this->_CtrTablePk . " = " . $id );
+		//$res = $this->_DBconn->delete( $this->_CtrTable, $this->_CtrTablePk . " = " . $id );
+		
+		//削除条件
+		$where = $this->_CtrTablePk . " = " . $id;
+
+		// 削除
+		$res = $this->_DBconn->delete( $this->_CtrTable, $where );
+
+		// 削除
+		$res = $this->_DBconn->delete( $this->_CtrTable2, $where );
+
 
 		// 戻り値
 		return $res;
