@@ -344,7 +344,7 @@ class AD_rental {
 
 		// 更新
 		//$res = $this->_DBconn->delete( $this->_CtrTable, $this->_CtrTablePk . " = " . $id );
-		
+
 		//削除条件
 		$where = $this->_CtrTablePk . " = " . $id;
 
@@ -453,13 +453,12 @@ class AD_rental {
 								 "PageFileName"    => "javascript:changePage(%d);" );
 
 			// オプション
-			$option = array( "fetch" => _DB_FETCH_ALL,
-							 "page"  => $_PAGE_INFO );
+			$option = array( "fetch" => _DB_FETCH_ALL);
 
 		}
 
 		// データ取得
-		$res = $this->_DBconn->selectCtrl( $creation_kit, $option );
+		$res = $this->_DBconn->selectCtrl( $creation_kit, array( "fetch" => _DB_FETCH_ALL) );
 
 		// 戻り値
 		return $res;
