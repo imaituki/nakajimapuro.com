@@ -163,7 +163,7 @@ class AD_rental {
 				// detail チェック
 				foreach ($arrVal["detail"] as $key => $value) {
 					// チェックエントリー
-					$objInputCheck->entryData( "スペック（種類）"        , "detail_".$key."_type"  , $value["type"]  , array( "CHECK_EMPTY"), null, null );
+					//$objInputCheck->entryData( "スペック（種類）"        , "detail_".$key."_type"  , $value["type"]  , array( "CHECK_EMPTY"), null, null );
 					$objInputCheck->entryData( "税抜き単価"        , "detail_".$key."_price"     , $value["price"]    , array( "CHECK_EMPTY"), 0, 255 );
 				}
 			}

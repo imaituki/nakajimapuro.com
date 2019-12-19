@@ -10,7 +10,6 @@ sortableInit();
 			<th></th>
 			<th>商品名・名前</th>
 			<th>カテゴリ</th>
-			<th class="photo">写真</th>
 			<th class="showhide">表示</th>
 			<th class="delete">削除</th>
 		</tr>
@@ -20,7 +19,6 @@ sortableInit();
 			<th></th>
 			<th>商品名・名前</th>
 			<th>カテゴリ</th>
-			<th class="photo">写真</th>
 			<th class="showhide">表示</th>
 			<th class="delete">削除</th>
 		</tr>
@@ -32,18 +30,6 @@ sortableInit();
 			<td><a href="./edit.php?id={$rental.$_CONTENTS_ID}">{$rental.name}</a></td>
 			<td>
 				{$OptionRentalCategory[$rental.id_rental_category]}
-			</td>
-			<td class="pos_al">
-				<div class="lightBoxGallery">
-					{foreach from=$_ARR_IMAGE item=file name=file}
-						{if $rental[$file.name]}
-							<a href="{$_IMAGEFULLPATH}/{$_CONTENTS_DIR}/{$file.name}/l_{$rental[$file.name]}" title="{$file.comment|default:""}" rel="lightbox[]">
-								<img src="{$_IMAGEFULLPATH}/{$_CONTENTS_DIR}/{$file.name}/s_{$rental[$file.name]}" width="50" />
-							</a>
-						{/if}
-						{if $smarty.foreach.file.iteration % 3 == 0}<br />{/if}
-					{/foreach}
-				</div>
 			</td>
 			<td class="pos_ac">
 				<div class="switch">
