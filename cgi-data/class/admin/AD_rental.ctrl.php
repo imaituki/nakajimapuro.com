@@ -208,6 +208,9 @@ class AD_rental {
 		// 登録
 		$res = $this->_DBconn->insert( $this->_CtrTable, $arrVal, $arrSql );
 
+		// キャッシュクリア
+		$this->_DBconn->freshCacheAll( $this->_CacheDir );
+
 		// 戻り値
 		return $res;
 
@@ -249,6 +252,9 @@ class AD_rental {
 		// 登録
 		$res = $this->_DBconn->insert( $this->_CtrTable2, $arrVal, $arrSql );
 
+		// キャッシュクリア
+		$this->_DBconn->freshCacheAll( $this->_CacheDir );
+
 		// 戻り値
 		return $res;
 
@@ -279,6 +285,9 @@ class AD_rental {
 		// 更新
 		$res = $this->_DBconn->update( $this->_CtrTable, $arrVal, $arrSql, $where );
 
+		// キャッシュクリア
+		$this->_DBconn->freshCacheAll( $this->_CacheDir );
+
 		// 戻り値
 		return $res;
 
@@ -305,6 +314,9 @@ class AD_rental {
 
 		// 登録
 		$res = $this->_DBconn->update( $this->_CtrTable2, $arrVal, $arrSql );
+
+		// キャッシュクリア
+		$this->_DBconn->freshCacheAll( $this->_CacheDir );
 
 		// 戻り値
 		return $res;
@@ -354,6 +366,8 @@ class AD_rental {
 		// 削除
 		$res = $this->_DBconn->delete( $this->_CtrTable2, $where );
 
+		// キャッシュクリア
+		$this->_DBconn->freshCacheAll( $this->_CacheDir );
 
 		// 戻り値
 		return $res;
@@ -375,6 +389,9 @@ class AD_rental {
 
 		// 切り替え処理
 		$res = $this->_DBconn->update( $this->_CtrTable, array( "display_flg" => $flg ), null, $this->_CtrTablePk . " = " . $id );
+
+		// キャッシュクリア
+		$this->_DBconn->freshCacheAll( $this->_CacheDir );
 
 		// 戻り値
 		return $res;
