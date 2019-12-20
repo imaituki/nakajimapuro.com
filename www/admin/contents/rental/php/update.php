@@ -85,12 +85,15 @@ if( empty( $message["ng"] ) ) {
 } else {
 
 	// 写真
-	if( !empty($_ARR_IMAGE) && is_array($_ARR_IMAGE) ){
-		foreach( $_ARR_IMAGE as $key => $val ) {
-			$arr_post[$val["name"]] = $arr_post["_" . $val["name"]."_now"];
+	if( !empty($arr_post["detail"]) && is_array($arr_post["detail"]) ){
+		foreach( $arr_post["detail"] as $key => $val ){
+			if( !empty($_ARR_IMAGE) && is_array($_ARR_IMAGE) ){
+				foreach( $_ARR_IMAGE as $key2 => $val2 ) {
+					$arr_post["detail"][$key][$val2["name"]] = $val["_" . $val2["name"]."_now"];
+				}
+			}
 		}
 	}
-
 
 	// smarty設定
 	$smarty = new MySmarty("admin");
