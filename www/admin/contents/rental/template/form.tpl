@@ -72,13 +72,13 @@
 						<textarea name="detail[{$key}][comment]" id="rental_parts_comment_{$key}" rows="3" class="form-control text rental_parts_comment">{$rental_parts.comment|default:""}</textarea>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group required">
 				    <label class="col-sm-2 control-label">税抜き単価</label>
 				    <div class="col-sm-3">
 						{if $message.ng[detail_|cat:$key|cat:"_price"]|default:"" != NULL}<p class="error">{$message.ng[detail_|cat:$key|cat:"_price"]}</p>{/if}
 				        <div class="input-group m-b">
 				            <span class="input-group-addon">￥</span>
-				            <input type="number" class="form-control rental_parts_type" name="detail[{$key}][price]" id="rental_parts_comment_{$key}" value="{$rental_parts.price|default:""}" min="0"/>
+				            <input type="number" class="form-control rental_parts_price" name="detail[{$key}][price]" id="rental_parts_comment_{$key}" value="{$rental_parts.price|default:""}" min="0"/>
 				        </div>
 				    </div>
 				</div>

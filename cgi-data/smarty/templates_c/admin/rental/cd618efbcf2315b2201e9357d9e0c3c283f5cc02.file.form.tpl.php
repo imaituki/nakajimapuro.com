@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2019-12-19 11:09:02
+<?php /* Smarty version Smarty-3.1.18, created on 2019-12-23 14:19:29
          compiled from "/home/nakajimapuro/www/admin/contents/rental/template/form.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:5701763025df6fe038b1602-31501558%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'cd618efbcf2315b2201e9357d9e0c3c283f5cc02' => 
     array (
       0 => '/home/nakajimapuro/www/admin/contents/rental/template/form.tpl',
-      1 => 1576721332,
+      1 => 1577078364,
       2 => 'file',
     ),
   ),
@@ -146,7 +146,7 @@ $_smarty_tpl->tpl_vars["rental_parts"]->_loop = true;
 </p><?php }?>
 				        <div class="input-group m-b">
 				            <span class="input-group-addon">￥</span>
-				            <input type="number" class="form-control rental_parts_type" name="detail[<?php echo $_smarty_tpl->tpl_vars['key']->value;?>
+				            <input type="number" class="form-control rental_parts_price" name="detail[<?php echo $_smarty_tpl->tpl_vars['key']->value;?>
 ][price]" id="rental_parts_comment_<?php echo $_smarty_tpl->tpl_vars['key']->value;?>
 " value="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['rental_parts']->value['price'])===null||$tmp==='' ? '' : $tmp);?>
 " min="0"/>
