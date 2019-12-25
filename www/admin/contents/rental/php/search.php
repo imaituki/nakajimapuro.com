@@ -26,7 +26,6 @@ if( !empty($arr_post["search_date_end"]) ) {
 }
 $_SESSION["admin"][_CONTENTS_DIR]["search"]["POST"] = $arr_post;
 
-
 //----------------------------------------
 //  データ一覧取得
 //----------------------------------------

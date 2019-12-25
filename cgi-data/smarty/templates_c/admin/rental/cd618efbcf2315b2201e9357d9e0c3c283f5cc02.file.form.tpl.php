@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2019-12-23 14:19:29
+<?php /* Smarty version Smarty-3.1.18, created on 2019-12-23 15:50:05
          compiled from "/home/nakajimapuro/www/admin/contents/rental/template/form.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:5701763025df6fe038b1602-31501558%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'cd618efbcf2315b2201e9357d9e0c3c283f5cc02' => 
     array (
       0 => '/home/nakajimapuro/www/admin/contents/rental/template/form.tpl',
-      1 => 1577078364,
+      1 => 1577083804,
       2 => 'file',
     ),
   ),
@@ -139,7 +139,7 @@ $_smarty_tpl->tpl_vars["rental_parts"]->_loop = true;
 </textarea>
 					</div>
 				</div>
-				<div class="form-group">
+				<div class="form-group required">
 				    <label class="col-sm-2 control-label">税抜き単価</label>
 				    <div class="col-sm-3">
 						<?php if ((($tmp = @$_smarty_tpl->tpl_vars['message']->value['ng'][(('detail_').($_smarty_tpl->tpl_vars['key']->value)).("_price")])===null||$tmp==='' ? '' : $tmp)!=null) {?><p class="error"><?php echo $_smarty_tpl->tpl_vars['message']->value['ng'][(('detail_').($_smarty_tpl->tpl_vars['key']->value)).("_price")];?>

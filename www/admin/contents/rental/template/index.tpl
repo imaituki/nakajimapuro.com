@@ -30,7 +30,7 @@
 			</div>
 			<div class="wrapper wrapper-content">
 				<div class="ibox-content m-b-sm border-bottom">
-					<div class="row">
+					<div class="row mb10">
 						<form method="post" action="" id="formSearch" enctype="multipart/form-data">
 							<div class="col-sm-4">
 								<label class="control-label" for="search_keyword">キーワード</label>
@@ -41,10 +41,16 @@
 										<button type="button" class="btn btn-m btn-primary btn_search"> 検索</button>
 										<a href="javascript:void(0)" class="reset_btn btn_reset"> リセット</a>
 										<input type="hidden" name="search_area" value="{$arr_post.search_area}">
+										<input type="hidden" name="search_category" id="search_category" value="{$arr_post.search_category}">
 									</span>
 								</div>
 							</div>
 						</form>
+					</div>
+					<div class="row">
+						{foreach from=$OptionRentalCategory item="category" key="key" name="LoopCategory"}
+						<div class="col-sm-2 mb10"><a href="?cat={$key}" >{$category}</a></div>
+						{/foreach}
 					</div>
 				</div>
 				<div class="row">

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2019-12-17 11:46:05
+<?php /* Smarty version Smarty-3.1.18, created on 2019-12-25 20:20:14
          compiled from "../template/index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:1508509105dd3aeb954aa22-90234612%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '6c39e247f385d95767962e1dac86ee8434c9a9c2' => 
     array (
       0 => '../template/index.tpl',
-      1 => 1576550757,
+      1 => 1577272812,
       2 => 'file',
     ),
   ),
@@ -27,6 +27,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '_CONTENTS_DIR' => 0,
     '_SESSION' => 0,
     'arr_post' => 0,
+    'OptionRentalCategory' => 0,
+    'key' => 0,
+    'category' => 0,
     'message' => 0,
   ),
   'has_nocache_code' => false,
@@ -73,7 +76,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 			</div>
 			<div class="wrapper wrapper-content">
 				<div class="ibox-content m-b-sm border-bottom">
-					<div class="row">
+					<div class="row mb10">
 						<form method="post" action="" id="formSearch" enctype="multipart/form-data">
 							<div class="col-sm-4">
 								<label class="control-label" for="search_keyword">キーワード</label>
@@ -86,10 +89,25 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 										<a href="javascript:void(0)" class="reset_btn btn_reset"> リセット</a>
 										<input type="hidden" name="search_area" value="<?php echo $_smarty_tpl->tpl_vars['arr_post']->value['search_area'];?>
 ">
+										<input type="hidden" name="search_category" id="search_category" value="<?php echo $_smarty_tpl->tpl_vars['arr_post']->value['search_category'];?>
+">
 									</span>
 								</div>
 							</div>
 						</form>
+					</div>
+					<div class="row">
+						<?php  $_smarty_tpl->tpl_vars["category"] = new Smarty_Variable; $_smarty_tpl->tpl_vars["category"]->_loop = false;
+ $_smarty_tpl->tpl_vars["key"] = new Smarty_Variable;
+ $_from = $_smarty_tpl->tpl_vars['OptionRentalCategory']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars["category"]->key => $_smarty_tpl->tpl_vars["category"]->value) {
+$_smarty_tpl->tpl_vars["category"]->_loop = true;
+ $_smarty_tpl->tpl_vars["key"]->value = $_smarty_tpl->tpl_vars["category"]->key;
+?>
+						<div class="col-sm-2 mb10"><a href="?cat=<?php echo $_smarty_tpl->tpl_vars['key']->value;?>
+" ><?php echo $_smarty_tpl->tpl_vars['category']->value;?>
+</a></div>
+						<?php } ?>
 					</div>
 				</div>
 				<div class="row">

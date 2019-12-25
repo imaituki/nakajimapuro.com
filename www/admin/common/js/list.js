@@ -1,39 +1,39 @@
 //-------------------------------------------
 //  設定
 //-------------------------------------------
-$(function() {
+$(function () {
 
 	// Submit無効処理
-	$(document).on('submit', '#formList', function(){
+	$(document).on('submit', '#formList', function () {
 		return false;
 	});
-	$(document).on('submit', '#formSearch', function(){
+	$(document).on('submit', '#formSearch', function () {
 		return false;
 	});
 
 	// 検索
-	$(document).on('click', '.btn_search', function(){
+	$(document).on('click', '.btn_search', function () {
 		searchList();
 	});
 
 	// 検索リセット
-	$(document).on('click', '.btn_reset', function(){
+	$(document).on('click', '.btn_reset', function () {
 		searchReset();
 	});
 
 	// ソート画面
-	$(document).on('click', '.btn_sort', function(){
+	$(document).on('click', '.btn_sort', function () {
 		getList("mode=sort");
 	});
 
 	// 表示切替
-	$(document).on('change', '.btn_display', function(){
+	$(document).on('change', '.btn_display', function () {
 		updateDisplay(this);
 	});
 
 	// 削除
-	$(document).on('click', '.btn_delete', function(){
-		updateDelete( $(this).attr('data-id') );
+	$(document).on('click', '.btn_delete', function () {
+		updateDelete($(this).attr('data-id'));
 	});
 
 });
@@ -48,26 +48,26 @@ function getList(data) {
 	var php = $('#search_php').val();
 
 	// 検索PHPの指定がない場合
-	if( typeof php === "undefined" ) {
+	if (typeof php === "undefined") {
 		php = "./search.php";
 	}
 
 	// 検索処理
 	$.ajax({
 		type: "POST",
-		url:  php,
+		url: php,
 		data: data,
-		success: function(e){
+		success: function (e) {
 			$("#searchList").html(e);
-			$("#searchList").css('display','block');
+			$("#searchList").css('display', 'block');
 
 			// ライトボックス
-			if( $('a[rel^=lightbox]').length ) {
+			if ($('a[rel^=lightbox]').length) {
 				$('a[rel^=lightbox]').lightBox();
 			}
 
 			// TOPへ
-			$('body,html').animate({scrollTop: 0},0);
+			$('body,html').animate({ scrollTop: 0 }, 0);
 		}
 	});
 
@@ -86,13 +86,13 @@ function searchList() {
 	getList(pers);
 
 	// 処理終了後
-	$(document).ajaxComplete(function(){
+	$(document).ajaxComplete(function () {
 
 		// リセットボタン表示
-		$(".btn_reset").css('display','inline');
+		$(".btn_reset").css('display', 'inline');
 
 		// メッセージ
-		dispMessage( "<i class=\"icon-search\"></i>&nbsp;検索が完了いたしました。", "ok mb20" );
+		dispMessage("<i class=\"icon-search\"></i>&nbsp;検索が完了いたしました。", "ok mb20");
 
 	});
 }
@@ -104,8 +104,8 @@ function searchList() {
 function searchReset() {
 
 	// リセット
-	$("#formSearch").find(':input').each(function() {
-		switch ( this.type ) {
+	$("#formSearch").find(':input').each(function () {
+		switch (this.type) {
 			case 'password':
 			case 'select-multiple':
 			case 'select-one':
@@ -116,25 +116,25 @@ function searchReset() {
 			case 'checkbox':
 			case 'radio':
 				this.checked = false;
-			break;
+				break;
 			case 'hidden':
-			break;
+				break;
 		}
 
 		// 日付
 		var date = new Date();
 
 		// 日付リセット
-		switch( $(this).attr('class') ) {
+		switch ($(this).attr('class')) {
 			case 'reset_year':
 				$(this).val(toDoubleDigits(date.getFullYear()));
-			break;
+				break;
 			case 'reset_month':
-				$(this).val(toDoubleDigits(date.getMonth()+1));
-			break;
+				$(this).val(toDoubleDigits(date.getMonth() + 1));
+				break;
 			case 'reset_day':
 				$(this).val(date.getDate());
-			break;
+				break;
 		}
 
 	});
@@ -146,13 +146,13 @@ function searchReset() {
 	getList(pers);
 
 	// 処理終了後
-	$(document).ajaxComplete(function(){
+	$(document).ajaxComplete(function () {
 
 		// リセットボタン表示
-		$(".btn_reset").css('display','none');
+		$(".btn_reset").css('display', 'none');
 
 		// メッセージ
-		dispMessage( "<i class=\"icon-back\"></i>&nbsp;検索をリセットいたしました。", "ok mb20" );
+		dispMessage("<i class=\"icon-back\"></i>&nbsp;検索をリセットいたしました。", "ok mb20");
 
 	});
 
@@ -165,7 +165,7 @@ function searchReset() {
 function changePage(e) {
 
 	// メッセージ削除
-	$("#msg").css('display','none');
+	$("#msg").css('display', 'none');
 
 	// ページ切替
 	$("#page").val(e)
@@ -176,7 +176,7 @@ function changePage(e) {
 	// データ
 	var pers = $("#formSearch").serialize() + "&page=" + e;
 
-	if( style != undefined ){
+	if (style != undefined) {
 		pers = pers + "&style=" + style;
 	}
 
@@ -192,29 +192,29 @@ function changePage(e) {
 function updateCancel() {
 
 	// 確認
-	if( !confirm("キャンセル処理を行ってよろしいですか？") ) return false;
+	if (!confirm("キャンセル処理を行ってよろしいですか？")) return false;
 
 	// データ生成
 	var id = [];
-	$("input:checkbox[name^='cancel_flg[]']:checked").each( function () {
+	$("input:checkbox[name^='cancel_flg[]']:checked").each(function () {
 		id.push(this.value);
 	});
 
 	// 削除処理
 	$.ajax({
 		type: "POST",
-		url:  "./cancel.php",
-		data: { "id":id },
-		success: function(e){
+		url: "./cancel.php",
+		data: { "id": id },
+		success: function (e) {
 
 			// データ取得
 			var parseData = JSON.parse(e);
 
 			// メッセージ表示
-			if( parseData.result == "true" ) {
-				dispMessage( "<i class=\"icon-check\"></i>&nbsp;" + parseData.message, "ok mb20" );
+			if (parseData.result == "true") {
+				dispMessage("<i class=\"icon-check\"></i>&nbsp;" + parseData.message, "ok mb20");
 			} else {
-				dispMessage( "<i class=\"icon-attention\"></i>&nbsp;" + parseData.message, "error mb20" );
+				dispMessage("<i class=\"icon-attention\"></i>&nbsp;" + parseData.message, "error mb20");
 			}
 
 			// リストの再読み込み
@@ -229,33 +229,33 @@ function updateCancel() {
 //-------------------------------------------
 //  表示更新処理
 //-------------------------------------------
-function updateDisplay( my ) {
+function updateDisplay(my) {
 
 	// 確認
-	if( !confirm("表示更新を行ってよろしいですか？") ) {
-		( $(my).prop('checked') == true ) ? $(my).prop('checked', false) : $(my).prop('checked', true);
+	if (!confirm("表示更新を行ってよろしいですか？")) {
+		($(my).prop('checked') == true) ? $(my).prop('checked', false) : $(my).prop('checked', true);
 	}
 
 	// 初期化
-	var checked = ( $(my).prop('checked') == true ) ? 1 : 0;
-	var id      = $(my).attr('data-id');
+	var checked = ($(my).prop('checked') == true) ? 1 : 0;
+	var id = $(my).attr('data-id');
 
 	// 表示更新処理
 	$.ajax({
 		type: "POST",
-		url:  "./display.php",
-		data: { "id":id, "display_flg":checked },
-		success: function(e){
+		url: "./display.php",
+		data: { "id": id, "display_flg": checked },
+		success: function (e) {
 
 			// データ取得
 			var parseData = JSON.parse(e);
 
 			// メッセージ表示
-			if( parseData.result == "true" ) {
-				dispMessage( "<i class=\"icon-check\"></i>&nbsp;" + parseData.message, "ok mb20" );
+			if (parseData.result == "true") {
+				dispMessage("<i class=\"icon-check\"></i>&nbsp;" + parseData.message, "ok mb20");
 			} else {
-				dispMessage( "<i class=\"icon-attention\"></i>&nbsp;" + parseData.message, "error mb20" );
-				( $(my).prop('checked') == true ) ? $(my).prop('checked', false) : $(my).prop('checked', true);
+				dispMessage("<i class=\"icon-attention\"></i>&nbsp;" + parseData.message, "error mb20");
+				($(my).prop('checked') == true) ? $(my).prop('checked', false) : $(my).prop('checked', true);
 			}
 
 		}
@@ -269,31 +269,31 @@ function updateDisplay( my ) {
 function updateDisplayNum() {
 
 	// 確認
-	if( !confirm("表示順更新を行ってよろしいですか？") ) return false;
+	if (!confirm("表示順更新を行ってよろしいですか？")) return false;
 
 	// データ生成
 	var pers = "";
-	$("input:text[name^='display_num']").each( function () {
+	$("input:text[name^='display_num']").each(function () {
 		pers = pers + this.name + "=" + this.value + "&";
 	});
-	$("input:hidden[name='id[]']").each( function () {
+	$("input:hidden[name='id[]']").each(function () {
 		pers = pers + "id[]=" + this.value + "&";
 	});
 	// 表示順更新処理
 	$.ajax({
 		type: "POST",
-		url:  "./sort.php",
+		url: "./sort.php",
 		data: pers,
-		success: function(e){
+		success: function (e) {
 
 			// データ取得
 			var parseData = JSON.parse(e);
 
 			// メッセージ表示
-			if( parseData.result == "true" ) {
-				dispMessage( "<i class=\"icon-check\"></i>&nbsp;" + parseData.message, "ok mb20" );
+			if (parseData.result == "true") {
+				dispMessage("<i class=\"icon-check\"></i>&nbsp;" + parseData.message, "ok mb20");
 			} else {
-				dispMessage( "<i class=\"icon-attention\"></i>&nbsp;" + parseData.message, "error mb20" );
+				dispMessage("<i class=\"icon-attention\"></i>&nbsp;" + parseData.message, "error mb20");
 			}
 
 			// リストの再読み込み
@@ -309,26 +309,26 @@ function updateDisplayNum() {
 //-------------------------------------------
 //  削除処理
 //-------------------------------------------
-function updateDelete( id ) {
+function updateDelete(id) {
 
 	// 確認
-	if( !confirm("削除処理を行ってよろしいですか？") ) return false;
+	if (!confirm("削除処理を行ってよろしいですか？")) return false;
 
 	// 削除処理
 	$.ajax({
 		type: "POST",
-		url:  "./delete.php",
-		data: { "id":id },
-		success: function(e){
+		url: "./delete.php",
+		data: { "id": id },
+		success: function (e) {
 
 			// データ取得
 			var parseData = JSON.parse(e);
 
 			// メッセージ表示
-			if( parseData.result == "true" ) {
-				dispMessage( "<i class=\"icon-check\"></i>&nbsp;" + parseData.message, "ok mb20" );
+			if (parseData.result == "true") {
+				dispMessage("<i class=\"icon-check\"></i>&nbsp;" + parseData.message, "ok mb20");
 			} else {
-				dispMessage( "<i class=\"icon-attention\"></i>&nbsp;" + parseData.message, "error mb20" );
+				dispMessage("<i class=\"icon-attention\"></i>&nbsp;" + parseData.message, "error mb20");
 			}
 
 			// リストの再読み込み
@@ -346,36 +346,36 @@ function updateDelete( id ) {
 function updateDelete2() {
 
 	// 確認
-	if( !confirm("削除処理を行ってよろしいですか？") ) return false;
+	if (!confirm("削除処理を行ってよろしいですか？")) return false;
 
 	// データ生成
 	var pers = "";
-	$("input:checkbox[name^='delete_flg']").each( function () {
-		if( this.checked == true ) {
+	$("input:checkbox[name^='delete_flg']").each(function () {
+		if (this.checked == true) {
 			pers = pers + this.name + "=" + 1 + "&";
 		} else {
 			pers = pers + this.name + "=" + 0 + "&";
 		}
 	});
-	$("input:hidden[name='id[]']").each( function () {
+	$("input:hidden[name='id[]']").each(function () {
 		pers = pers + "id[]=" + this.value + "&";
 	});
 
 	// 削除処理
 	$.ajax({
 		type: "POST",
-		url:  "./delete.php",
+		url: "./delete.php",
 		data: pers,
-		success: function(e){
+		success: function (e) {
 
 			// データ取得
 			var parseData = JSON.parse(e);
 
 			// メッセージ表示
-			if( parseData.result == "true" ) {
-				dispMessage( "<i class=\"icon-check\"></i>&nbsp;" + parseData.message, "ok mb20" );
+			if (parseData.result == "true") {
+				dispMessage("<i class=\"icon-check\"></i>&nbsp;" + parseData.message, "ok mb20");
 			} else {
-				dispMessage( "<i class=\"icon-attention\"></i>&nbsp;" + parseData.message, "error mb20" );
+				dispMessage("<i class=\"icon-attention\"></i>&nbsp;" + parseData.message, "error mb20");
 			}
 
 			// リストの再読み込み
@@ -393,24 +393,24 @@ function updateDelete2() {
 //-------------------------------------------
 //  ０埋め
 //-------------------------------------------
-var toDoubleDigits = function(num) {
-  num += "";
-  if (num.length === 1) {
-    num = "0" + num;
-  }
- return num;
+var toDoubleDigits = function (num) {
+	num += "";
+	if (num.length === 1) {
+		num = "0" + num;
+	}
+	return num;
 };
 
 
 //-------------------------------------------
 //  メッセージ表示
 //-------------------------------------------
-function dispMessage( m, c ) {
-	$('#msg').attr("class", c );
-	$("#msg").html( m );
-	$('#msg').fadeTo( 500, 1   );
-	$('#msg').fadeTo( 500, 0.3 );
-	$('#msg').fadeTo( 500, 1   );
-	$('#msg').fadeTo( 500, 0.3 );
-	$('#msg').fadeTo( 500, 1   );
+function dispMessage(m, c) {
+	$('#msg').attr("class", c);
+	$("#msg").html(m);
+	$('#msg').fadeTo(500, 1);
+	$('#msg').fadeTo(500, 0.3);
+	$('#msg').fadeTo(500, 1);
+	$('#msg').fadeTo(500, 0.3);
+	$('#msg').fadeTo(500, 1);
 }

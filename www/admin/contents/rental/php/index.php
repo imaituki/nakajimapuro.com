@@ -25,7 +25,11 @@ unset( $_SESSION["admin"][_CONTENTS_DIR]["message"] );
 //----------------------------------------
 $arr_post = ( isset($_SESSION["admin"][_CONTENTS_DIR]["search"]["POST"]) ) ? $_SESSION["admin"][_CONTENTS_DIR]["search"]["POST"] : null;
 
-
+if( !empty( $arr_get["cat"] ) ){
+	$arr_post["search_category"] = $arr_get["cat"];
+}elseif( empty( $arr_post["search_category"] ) ){
+	$arr_post["search_category"] = key( $OptionRentalCategory );
+}
 //----------------------------------------
 //  データ一覧取得
 //----------------------------------------
@@ -52,6 +56,7 @@ $smarty->compile_dir .= _CONTENTS_DIR. "/";
 // テンプレートに設定
 $smarty->assign( "message"  , $message );
 $smarty->assign( "t_rental" , $t_rental);
+$smarty->assign( "arr_post" , $arr_post);
 if( !empty($_ARR_IMAGE) ){
 	$smarty->assign( '_ARR_IMAGE', $_ARR_IMAGE );
 }
