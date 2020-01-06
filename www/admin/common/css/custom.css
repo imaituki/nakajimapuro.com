@@ -104,10 +104,10 @@ td.pos_al > div,lightBoxGallery { text-align:left; }
 
 	/*.order_subtotal*/
 	.order_subtotal { text-align: right;}
-	.order_subtotal p { display: inline-table; border: 1px solid #1ab394; table-layout: fixed; min-width: 250px;} 
+	.order_subtotal p { display: inline-table; border: 1px solid #1ab394; table-layout: fixed; min-width: 250px;}
 	.order_subtotal p > span { display:table-cell; vertical-align: middle; padding:10px;}
 	.order_subtotal p > span.f_bold { color: #1ab394; text-align: center; border-right: 1px solid #1ab394; width:80px;}
-	
+
 
 
 /*===================================================================
@@ -190,3 +190,177 @@ td.pos_al > div,lightBoxGallery { text-align:left; }
 	.ok > p { font-size:16px; padding:5px 7.5px; border-radius: 5px; border: 1px solid #18a689; color: #18a689; }
 	.ok > p::before { content: "\f10c"; font-family:FontAwesome; margin-right:5px; }
 
+
+    /*カレンダー */
+    .select_tab {
+      list-style: none;
+      padding: 0 10px;
+      letter-spacing: -.4em;
+    }
+
+    .select_tab li {
+      display: inline-block;
+      min-width: 100px;
+      letter-spacing: 0;
+      padding: 0 5px;
+    }
+
+    .select_tab li a {
+      display: block;
+      padding: 7.5px 10px;
+      border: 1px solid #1AB394;
+      color: #1AB394;
+      background: #FFF;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .calendar_date_select > span {
+      position: relative;
+      display: inline-block;
+    }
+
+    .calendar_date_select > span > span {
+      font-size: 1.8em;
+      font-weight: bold;
+    }
+
+    .calendar_date_select > span > a {
+      position: absolute;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      padding: 10px;
+      color: #1ab394;
+      font-weight: bold;
+    }
+
+    .calendar_date_select > span > a:first-child {
+      left: -50px;
+    }
+
+    .calendar_date_select > span > a:last-child {
+      right: -50px;
+    }
+
+    .tbl_calendar {
+      width: 80%;
+      table-layout: fixed;
+    }
+
+    .tbl_calendar th, .tbl_calendar td {
+      border: 1px solid #ddd;
+      padding: 10px;
+    }
+
+    .tbl_calendar thead th {
+      text-align: center;
+      font-weight: bold;
+      background: #eee;
+    }
+
+    .tbl_calendar tbody td span.day {
+      font-weight: bold;
+    }
+
+    .tbl_calendar tbody td span.cancel-day {
+      color: #D12225;
+    }
+
+    .tbl_calendar tbody td div {
+      margin: 0 -10px;
+     }
+
+    .tbl_calendar tbody td div.use-car {
+      background:#f5ff5f;
+    }
+
+    .tbl_calendar tbody td div.water-school {
+      background:#9dff5f;
+    }
+
+    .tbl_calendar tbody td div.cancel {
+      background:#c9cac9;
+    }
+
+    .loan_tbl_calendar {
+      min-width: 100%;
+    }
+    .list-equip li { margin-bottom: 10px; }
+    .list-equip li em,
+    .list-equip li span { display: inline-block; vertical-align: middle; }
+    .list-equip li em { width: 150px; font-style: normal; }
+
+    .table-overflow-wrap { overflow: auto; }
+    .table-overflow-wrap table { width: auto; }
+    .table-overflow-wrap th,
+    .table-overflow-wrap td { white-space: nowrap; }
+
+    .loan_tbl_calendar tbody td div.list-color {
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .loan_tbl_calendar tbody td div.color-bar0 {
+      background: rgba(119, 206, 253, 0.705);
+    }
+    .loan_tbl_calendar tbody td div.color-bar1 {
+      background: rgba(253, 249, 0, 0.623);
+    }
+    .loan_tbl_calendar tbody td div.color-bar2 {
+      background: hsla(0, 100%, 50%, 0.397);
+    }
+    .loan_tbl_calendar tbody td div.color-bar3 {
+      background: rgba(135, 253, 119, 0.705);
+    }
+    .loan_tbl_calendar tbody td div.color-bar4 {
+      background: rgba(119, 132, 253, 0.705);
+    }
+    .loan_tbl_calendar tbody td div.color-bar5 {
+      background: rgba(170, 119, 253, 0.705);
+    }
+    .loan_tbl_calendar tbody td div.color-bar6 {
+      background: rgba(253, 119, 224, 0.705);
+    }
+    .loan_tbl_calendar tbody td div.color-bar7 {
+      background: rgba(119, 253, 219, 0.705);
+    }
+    .loan_tbl_calendar tbody td div.color-bar8 {
+      background: rgba(253, 184, 119, 0.705);
+    }
+    .loan_tbl_calendar tbody td div.color-bar9 {
+      background: rgba(253, 106, 175, 0.705);
+    }
+    .loan_tbl_calendar tbody td div.color-bar10 {
+      background: rgba(115, 219, 192, 0.705);
+    }
+    .loan_tbl_calendar tbody td div.color-bar11 {
+      background: rgba(119, 206, 253, 0.705);
+    }
+    .loan_tbl_calendar tbody td div.color-bar12 {
+      background: rgba(172, 167, 240, 0.705);
+    }
+    .loan_tbl_calendar tbody td div.color-bar13 {
+      background: rgba(241, 71, 71, 0.705);
+    }
+    .loan_tbl_calendar tbody td div.color-bar14 {
+      background: rgba(241, 226, 139, 0.705);
+    }
+    .loan_tbl_calendar tbody td div.color-bar15 {
+      background: rgba(119, 139, 253, 0.705);
+    }
+    .loan_tbl_calendar tbody td div.color-bar16 {
+      background: rgba(1, 255, 99, 0.705);
+    }
+    .loan_tbl_calendar tbody td div.color-bar17 {
+      background: rgba(200, 18, 255, 0.705);
+    }
+    .loan_tbl_calendar tbody td div.color-bar18 {
+      background: rgba(86, 247, 233, 0.705);
+    }
+    .loan_tbl_calendar tbody td div.color-bar19 {
+      background: rgba(255, 168, 6, 0.561);
+    }
+    .loan_tbl_calendar tbody td div.color-bar20 {
+      background: rgba(250, 247, 69, 0.705);
+    }
