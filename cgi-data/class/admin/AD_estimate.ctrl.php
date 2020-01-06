@@ -415,6 +415,34 @@ class AD_estimate {
 			return $res;
 
 		}
+		//-------------------------------------------------------
+		// 関数名：GetSearchSanyouList
+		// 引  数：$search - 検索条件
+		//       ：$option - 取得条件
+		// 戻り値：さんよう号貸出リスト
+		// 内  容：申込み検索を行いデータを取得
+		//-------------------------------------------------------
+		function GetSearchSanyouList( $search ) {
+
+			// SQL配列
+			$creation_kit = array(  "select" => "*",
+									"from"   => $this->_CtrTable,
+									"where"  => "class = 2 AND set_flg != 0 ",
+									"order"  => "number DESC"
+								);
+
+			// 検索条件
+			if( !empty( $search["search_action_date_start"] ) && !empty( $search["search_action_date_end"] ) ) {
+				$creation_kit["where"] .= "AND ( ( " . $this->_DBconn->createWhereSql( "'" . $search["search_action_date_end"] . "'", $this->_CtrTable . ".hope_start_date", " <= ", null, null ) . " AND " . $this->_DBconn->createWhereSql( "'" . $search["search_action_date_start"] . "'", $this->_CtrTable . ".hope_start_date", " >= ", null, null ) . " ) OR ( " . $this->_DBconn->createWhereSql( "'" . $search["search_action_date_end"] . "'", $this->_CtrTable . ".return_hope_date", " <= ", null, null ) . " AND " . $this->_DBconn->createWhereSql( "'" . $search["search_action_date_start"] . "'", $this->_CtrTable . ".return_hope_date", " >= ", null, null ) . " ) ) ";
+			}
+
+			// データ取得
+			$res = $this->_DBconn->selectCtrl( $creation_kit, array( "fetch" => _DB_FETCH_ALL ) );
+
+			// 戻り値
+			return $res;
+
+		}
 
 	//-------------------------------------------------------
 	// 関数名：GetIdRow

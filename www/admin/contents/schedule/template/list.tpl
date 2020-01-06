@@ -1,7 +1,7 @@
 <p class="calendar_date_select pos_ac large f-bold">
 	<span>
-		<a href="./index.php?y={$mst_calendar.back_date|date_format:"%Y"}&m={$mst_calendar.back_date|date_format:"%m"}"><span style="font-size:25px;">&lt;&lt;</span></a> 
-		<span>{$mst_calendar.display_date|date_format:"%Y年%m月"}</span> 
+		<a href="./index.php?y={$mst_calendar.back_date|date_format:"%Y"}&m={$mst_calendar.back_date|date_format:"%m"}"><span style="font-size:25px;">&lt;&lt;</span></a>
+		<span>{$mst_calendar.display_date|date_format:"%Y年%m月"}</span>
 		<a href="./index.php?y={$mst_calendar.next_date|date_format:"%Y"}&m={$mst_calendar.next_date|date_format:"%m"}"><span style="font-size:25px;">&gt;&gt;</span></a>
 	</span>
 </p>
@@ -35,28 +35,10 @@
 						<td class="pos_vt pointer holiday" >
 							{$key}
 							{foreach from=$calendar.calendar item="detail" key="key2" name="loopDetail"}
-								{*{if $detail.sanyou_rentalflg != NULL}
-									<div class="use-car">
-									<br><a href="../../schedule{if $detail.class == 2}2{/if}/php/edit.php?id={$detail.id_schedule}"><span class="day{if $detail.cancel_flg == 1} cancel-day{/if}">{$detail.number}&nbsp;{if $detail.cancel_flg == 1}（中止）{/if}{$detail.name}{if $detail.loan_hope_time != NULL || $detail.return_hope_time != NULL}<br>{/if}{if $detail.loan_hope_time != NULL}貸出時間：{$detail.loan_hope_time}{/if}<br>{if $detail.return_hope_time != NULL}返却時間：{$detail.return_hope_time}{/if}</span>
-									</div>
-								{else}
-									<div class="{if $detail.cancel_flg == 1}cancel{elseif $detail.set_flg == 1 && ($detail.loan_hope_time != NULL && return_hope_time != NULL)}use-car{elseif $detail.set_flg == 2}water-school{/if}">
-									<br><a href="../../schedule{if $detail.class == 2}2{/if}/php/edit.php?id={$detail.id_schedule}"><span class="dayday{if $detail.equipment_flg == 3 && $detail.cancel_flg != 1} cancel-day{/if}">{$detail.number}&nbsp;{if $detail.cancel_flg == 1}（中止）{/if}{$detail.name}<br>{$detail.action_time}{if $detail.id_lecturer.0 != NULL}<br>{$OptionLecturer[$detail.id_lecturer.0]}{/if}</span></a>
-									</div>
-								{/if}*}
-								<div class="{if $detail.cancel_flg == 1}cancel{elseif $detail.set_flg == 1 && $detail.class == 1}use-car{elseif $detail.set_flg == 1 && $detail.class == 2 && ( $detail.hope_start_date != NULL && return_hope_date != NULL)}use-car{elseif $detail.set_flg == 2}water-school{/if}">
-									<a href="../../schedule{if $detail.class == 2}2{/if}/php/edit.php?id={$detail.id_schedule}">
-										<span class="dayday{if $detail.equipment_flg == 3 && $detail.cancel_flg != 1} cancel-day{/if}">
-											{$detail.number}&nbsp;{if $detail.cancel_flg == 1}（中止）{/if}{$detail.name}<br />
-											{if $detail.class == 2}
-											{if $detail.hope_time != NULL}貸出時間：{$detail.hope_time}<br />{/if}
-											{if $detail.return_hope_time != NULL}返却時間：{$detail.return_hope_time}<br />{/if}
-											{/if}
-											{if $detail.action_time != NULL}
-												{$detail.action_time}
-												{if $detail.id_lecturer.0 != NULL}<br />{/if}
-												{$OptionLecturer[$detail.id_lecturer.0]}
-											{/if}
+								<div class="water-school">
+									<a href="###">
+										<span class="dayday">
+											aaaaaa様
 										</span>
 									</a>
 								</div>
@@ -65,7 +47,7 @@
 					{else}
 						<td class="pos_vt pointer">{$key}</td>
 					{/if}
-					
+
 					{if $smarty.foreach.loopCalendar.last}
 						{section start=$calendar.week loop=6 name="loopEnd"}
 							<td>&nbsp;</td>

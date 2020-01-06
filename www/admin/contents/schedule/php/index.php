@@ -48,65 +48,55 @@ $mst_calendar["back_date"]    = date( "Y/m/d", strtotime( "-1 month", strtotime(
 //----------------------------------------
 // 操作クラス
 $objManage  = new DB_manage( _DNS );
-$objSchedule = new AD_schedule( $objManage );
+$objEstimate = new AD_estimate( $objManage );
 
 // 検索月の設定
 $arr_post["search_action_date_start"] = date( "Y/m/01", strtotime( $mst_calendar["display_date"] ) );
 $arr_post["search_action_date_end"]   = date( "Y/m/t", strtotime( $mst_calendar["display_date"] ) );
 
 // データ取得
-$t_schedule  = $objSchedule->GetSearchList( $arr_post, array( "fetch" => _DB_FETCH_ALL ) );
-
-$tmp_schedule2 = $objSchedule->GetSearchSanyouList( $arr_post );
+$tmp_estimate  = $objEstimate->GetSearchList( $arr_post, array( "fetch" => _DB_FETCH_ALL ) );
 
 // クラス削除
 unset( $objManage  );
-unset( $objSchedule );
+unset( $objEstimate );
 
 
 
 // 数日の場合の処理
-if( !empty( $tmp_schedule2 ) && is_array( $tmp_schedule2 ) ){
-	foreach ($tmp_schedule2 as $key => $val) {
-		$day = ( strtotime( $val["return_hope_date"] ) - strtotime( $val["hope_start_date"] ) ) / ( 60 * 60 * 24);
+if( !empty( $tmp_estimate ) && is_array( $tmp_estimate ) ){
+	foreach ($tmp_estimate as $key => $val) {
+		$day = ( strtotime( $val["date_end"] ) - strtotime( $val["date_start"] ) ) / ( 60 * 60 * 24);
 		if( $day != 0 ) {
 			// 違う日にちだけループ
 			for ( $i = 0; $i <= $day ; $i++ ) {
-				$val["date_dammy"] = date('Y-m-d', strtotime( $val["hope_start_date"] .  "+ " . $i . " days" ));
-				$t_schedule2[] = $val;
+				$val["date_dammy"] = date('Y-m-d', strtotime( $val["date_start"] .  "+ " . $i . " days" ));
+				$t_estimate[] = $val;
 			}
 		} else {
 
-			$val["date_dammy"] = $val["hope_start_date"];
-			$t_schedule2[] = $val;
+			$val["date_dammy"] = $val["date_start"];
+			$t_estimate[] = $val;
 		}
 
 	}
 }
 
 // カレンダーに組み込み
-if( !empty( $t_schedule ) && is_array( $t_schedule ) || !empty( $t_schedule2 ) && is_array( $t_schedule2 ) ){
+if( !empty( $t_estimate ) && is_array( $t_estimate ) ){
 	foreach ( $mst_calendar["calendar"] as $key => $val ) {
-		if( !empty( $t_schedule ) && is_array( $t_schedule ) ) {
-			foreach ( $t_schedule as $key2 => $val2 ) {
-				if( $key == date( "j", strtotime( $val2["action_date"] ) ) ){
-					$val2["id_lecturer"] = explode( ",", $val2["id_lecturer"] );
+		if( !empty( $t_estimate ) && is_array( $t_estimate ) ) {
+			foreach ( $t_estimate as $key2 => $val2 ) {
+				if( $key == date( "j", strtotime( $val2["date_dammy"] ) ) ){
 					$mst_calendar["calendar"][$key]["calendar"][] = $val2;
-				}
-			}
-		}
-		if( !empty( $t_schedule2 ) && is_array( $t_schedule2 ) ) {
-			foreach ( $t_schedule2 as $key3 => $val3 ) {
-				if( $key == date( "j", strtotime( $val3["date_dammy"] ) ) ){
-					$val3["sanyou_rentalflg"] = 1;
-					$mst_calendar["calendar"][$key]["calendar"][] = $val3;
 				}
 			}
 		}
 	}
 }
 
-
+disp_arr($mst_calendar);
+disp_arr($t_estimate);
 //----------------------------------------
 // 表示
 //----------------------------------------
@@ -116,7 +106,7 @@ $smarty->compile_dir .= "schedule/";
 
 // テンプレートに設定
 $smarty->assign( "message"     , $message      );
-$smarty->assign( "mst_calendar", $mst_calendar );
+$smarty->assign( "mst_calendar"  , $mst_calendar   );
 
 // 表示
 $smarty->display("index.tpl");
