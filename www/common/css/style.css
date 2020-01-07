@@ -1,7 +1,7 @@
 @charset "utf-8";
 /*
-	Last Update:2019/11/18
-	Auther: iw
+	Last Update:2020/01/07
+	Auther:iw
 */
 /*===================================================================
 	#top
@@ -11,11 +11,34 @@
 /*===================================================================
 	#rental
 ===================================================================*/
-#rental .cat{border: 2px solid #e27a5e;}
-#rental .cat a{ color: #000; text-decoration: none; padding: 10px; display: block;}
-#rental .cat a:hover{background:#e27a5e;}
+/* サイド付き */
+#body_wrap,
+#body_content { position:relative; }
+	@media (min-width: 768px){
+		#side_list { float:left; width:300px; }
+		#body_content { float:right; width:calc(100% - 330px); }
+	}
 
-#rental table th {font-weight: bold; text-align: center;}
+#side_list { border:2px solid #1b6fb1; border-bottom:1px solid #1b6fb1; border-radius:5px 5px 0 0; overflow:hidden; }
+#side_list h3 { background:#1b6fb1; color:#fff; text-align:center; font-size:1.25em; font-weight:bold; padding:8px 0 5px; }
+#side_list ul { border-top:4px solid #11456f; }
+#side_list li { border-bottom:1px solid #1b6fb1; }
+#side_list li a { display:block; padding:10px; text-decoration:none; color:#444; }
+#side_list li a:before { content:"\f0da"; font-family:"Font Awesome 5 Free"; -webkit-font-smoothing:antialiased; text-rendering:auto; font-variant:normal; font-weight:bold; font-size:0.85em; padding:0 10px; color:#1b6fb1; }
+body.pc #side_list li a:hover { background:#d9eeff; }
+
+.attention { border:2px solid #f88b53; padding:5px 10px; border-radius:10px; background:#fbf1eb; }
+.attention p { padding-top:5px; }
+.attention .btn_attend { display:block; margin:0 0 0 auto; max-width:200px; background:#f88b53; text-decoration:none; color:#fff; text-align:center; padding:5px; border-radius:5px; }
+
+.tbl_list { width:100%; border-collapse:collapse; }
+.tbl_list th,
+.tbl_list td { padding:10px; }
+.tbl_list thead th { background:#1b6fb1; border-style:solid; border-width:1px; border-color:#1b6fb1 #fff #fff #1b6fb1; color:#fff; text-align:center; font-weight:bold; }
+.tbl_list tbody th,
+.tbl_list tbody td { border:1px solid #999; vertical-align:middle; }
+.tbl_list .number { width:130px; }
+.tbl_list .number input { width:70px; padding:5px; margin-right:5px; }
 
 .thumbnail { max-width: 700px; margin: 0 auto 5px; padding: 0;}
 .thumbnail img,.thumbnail-nav img{ width: 100%;}
