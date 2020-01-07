@@ -38,7 +38,11 @@ if( !empty( $_POST["id_estimate"] ) ) {
 	// smarty設定
 	$smarty = new MySmarty("admin");
 	$smarty->compile_dir .= "estimate/";
+	
+	$smarty->assign( "mst_rental", $mst_rental );
 
+	// オプション
+	$smarty->assign( "OptionRental", $OptionRental );
 	// 表示
 	$smarty->display( "edit.tpl" );
 

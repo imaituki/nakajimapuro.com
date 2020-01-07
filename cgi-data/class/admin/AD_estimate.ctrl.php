@@ -384,11 +384,8 @@ class AD_estimate {
 				$creation_kit["where"] .= "AND ( " . $this->_DBconn->createWhereSql( $search["search_keyword"], "title", "LIKE", "OR", "%string%" ) . " ) ";
 			}
 
-			if( !empty( $search["search_date_start"] ) ) {
-				$creation_kit["where"] .= "AND " . $this->_DBconn->createWhereSql( "'" . $search["search_date_start"] . "'", $this->_CtrTable . ".date", " >= ", null, null ) . " ";
-			}
-			if( !empty( $search["search_date_end"] ) ) {
-				$creation_kit["where"] .= "AND " . $this->_DBconn->createWhereSql( "'" . $search["search_date_end"] . "'", $this->_CtrTable . ".date", " <= ", null, null ) . " ";
+			if( !empty( $search["search_date_start"] ) && !empty( $search["search_date_end"] ) ) {
+				$creation_kit["where"] .= "AND ( ( " . $this->_DBconn->createWhereSql( "'" . $search["search_date_start"] . "'", $this->_CtrTable . ".date_start", " >= ", null, null ) . " AND " . $this->_DBconn->createWhereSql( "'" . $search["search_date_end"] . "'", $this->_CtrTable . ".date_start", " <= ", null, null ) . " ) OR ( " . $this->_DBconn->createWhereSql( "'" . $search["search_date_start"] . "'", $this->_CtrTable . ".date_end", " >= ", null, null ) . " AND " . $this->_DBconn->createWhereSql( "'" . $search["search_date_end"] . "'", $this->_CtrTable . ".date_end", " <= ", null, null ) . " ) ) ";
 			}
 
 			// 取得条件

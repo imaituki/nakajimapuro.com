@@ -51,8 +51,8 @@ $objManage  = new DB_manage( _DNS );
 $objEstimate = new AD_estimate( $objManage );
 
 // 検索月の設定
-$arr_post["search_action_date_start"] = date( "Y/m/01", strtotime( $mst_calendar["display_date"] ) );
-$arr_post["search_action_date_end"]   = date( "Y/m/t", strtotime( $mst_calendar["display_date"] ) );
+$arr_post["search_date_start"] = date( "Y/m/01", strtotime( $mst_calendar["display_date"] ) );
+$arr_post["search_date_end"]   = date( "Y/m/t", strtotime( $mst_calendar["display_date"] ) );
 
 // データ取得
 $tmp_estimate  = $objEstimate->GetSearchList( $arr_post, array( "fetch" => _DB_FETCH_ALL ) );

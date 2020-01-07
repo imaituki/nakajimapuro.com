@@ -73,9 +73,9 @@ if( empty( $message["ng"] ) ) {
 	// テンプレートに設定
 	$smarty->assign( "message"   , $message    );
 	$smarty->assign( "arr_post"  , $arr_post   );
-
-	// オプション配列
-	$smarty->assign( "OptionStaff", $OptionStaff );
+	$smarty->assign( "mst_rental", $mst_rental );
+	// オプション
+	$smarty->assign( "OptionRental", $OptionRental );
 
 	// 表示
 	$smarty->display( "edit.tpl" );

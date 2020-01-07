@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2019-12-09 13:10:05
+<?php /* Smarty version Smarty-3.1.18, created on 2020-01-06 16:56:35
          compiled from "../template/export3.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:19430650175dedc91d0659f4-93966939%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '4a2c1db70790fd74da9b0ffccb1b6c8c0397a246' => 
     array (
       0 => '../template/export3.tpl',
-      1 => 1575864583,
+      1 => 1576467188,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_5dedc91d1959c7_98049742',
   'variables' => 
   array (
     'estimate' => 0,
@@ -23,11 +25,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'est' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5dedc91d1959c7_98049742',
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5dedc91d1959c7_98049742')) {function content_5dedc91d1959c7_98049742($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include '/home/jwcc/8034/cgi-data/smarty/libs/plugins/modifier.date_format.php';
-if (!is_callable('smarty_function_html_select_ken')) include '/home/jwcc/8034/cgi-data/smarty/libs/plugins/function.html_select_ken.php';
+<?php if ($_valid && !is_callable('content_5dedc91d1959c7_98049742')) {function content_5dedc91d1959c7_98049742($_smarty_tpl) {?><?php if (!is_callable('smarty_modifier_date_format')) include '/home/nakajimapuro/cgi-data/smarty/libs/plugins/modifier.date_format.php';
+if (!is_callable('smarty_function_html_select_ken')) include '/home/nakajimapuro/cgi-data/smarty/libs/plugins/function.html_select_ken.php';
 ?><!doctype html>
 <html>
 <head>
@@ -110,7 +110,7 @@ td { vertical-align:middle; }
 			<?php }?>
 		<?php }?>
 		&nbsp;<br />&nbsp;<br />
-		<span style="font-weight:bold; font-size:40px;">御見積金額（税込）<br>
+		<span style="font-weight:bold; font-size:40px;">ご請求金額（税込）<br>
 			　￥<?php if ($_smarty_tpl->tpl_vars['sum']->value) {?><?php echo number_format((($tmp = @$_smarty_tpl->tpl_vars['sum']->value)===null||$tmp==='' ? 0 : $tmp));?>
 円<?php }?></span>&nbsp;(税抜価格 ￥<?php if ($_smarty_tpl->tpl_vars['sum_free']->value) {?><?php echo number_format((($tmp = @$_smarty_tpl->tpl_vars['sum_free']->value)===null||$tmp==='' ? 0 : $tmp));?>
 円<?php }?>)&nbsp;<br />

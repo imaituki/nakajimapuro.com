@@ -26,8 +26,6 @@ $date = 1;
 
 $mst_calendar["display_date"] = date( "Y/m/d", mktime( 0, 0, 0, $month, $date, $year ) );
 
-//$t_rental = $objRental->GetSearchList();
-
 $mst_calendar["minday"]   = 1;
 $mst_calendar["maxday"]   = date( "t", strtotime( $mst_calendar["display_date"] ) );
 
@@ -45,26 +43,22 @@ $mst_calendar["back_date"]    = date( "Y/m/d", strtotime( "-1 month", strtotime(
 //  データ一覧取得
 //----------------------------------------
 // 操作クラス
-$objManage    = new DB_manage( _DNS );
-$objRequest   = new AD_request( $objManage );
-$objEquipment = new AD_equipment( $objManage );
+$objManage = new DB_manage( _DNS,1 );
+$objRental = new AD_rental( $objManage );
+
+// データ取得
+$OptionStoreRental = $objRental->GetOptionParts( "option" );
 
 // 検索月の設定
-$arr_post["search_action_date_start"] = date( "Y/m/01", strtotime( $mst_calendar["display_date"] ) );
-$arr_post["search_action_date_end"]   = date( "Y/m/t", strtotime( $mst_calendar["display_date"] ) );
+$arr_post["search_date_start"] = date( "Y/m/01", strtotime( $mst_calendar["display_date"] ) );
+$arr_post["search_date_end"]   = date( "Y/m/t", strtotime( $mst_calendar["display_date"] ) );
 
 // データ取得
-$tmp_request = $objRequest->GetSearchList( null, array( "fetch" => _DB_FETCH_ALL ), "( ( t_request.date_start >= '" . date( "Y/m/01", strtotime( $mst_calendar["display_date"] ) ) ."' AND t_request.date_start <= '" . date( "Y/m/t", strtotime( $mst_calendar["display_date"] ) ) ."' ) OR ( t_request.date_end >= '" . date( "Y/m/01", strtotime( $mst_calendar["display_date"] ) ) ."' AND t_request.date_end <= '" . date( "Y/m/t", strtotime( $mst_calendar["display_date"] ) ) ."' ) ) AND cancel_flg = 0 AND equipment_arr IS NOT NULL AND equipment_num IS NOT NULL ", "id_request, class, name, representative, place, date_start, date_end, equipment_arr, equipment_num, equipment_shop" );
-
-// データ取得
-$mst_equipment = $objEquipment->GetSearchList( $arr_post );
-
-
+$tmp_rental = $objRental->GetOptionParts( null, $arr_post );
 
 // クラス削除
 unset( $objManage    );
-unset( $objRequest   );
-unset( $objEquipment );
+unset( $objRental   );
 
 // 一覧用に生成
 if( !empty( $tmp_request ) && is_array( $tmp_request ) ){
@@ -124,7 +118,7 @@ $smarty->assign( "mst_calendar", $mst_calendar );
 
 // オプション設定
 $smarty->assign( "OptionWeek"            , $OptionWeek             );
-$smarty->assign( "OptionStoreEquipment"  , $OptionStoreEquipment   );
+$smarty->assign( "OptionStoreRental"  , $OptionStoreRental   );
 
 // 表示
 $smarty->display("index.tpl");

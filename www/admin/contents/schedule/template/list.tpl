@@ -38,7 +38,7 @@
 								<div class="water-school">
 									<a href="###">
 										<span class="dayday">
-											aaaaaa様
+											{$detail.company}様
 										</span>
 									</a>
 								</div>

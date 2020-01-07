@@ -155,7 +155,12 @@
 								<tbody>
 									<tr id="base_record" style="display:none;">
 										<!-- 内容-->
-										<td><input type="text" class="form-control" name="estimate[title][]" value="{$est.title|default:''}" list="titles" /></td>
+										<td>
+											<select class="form-control" name="estimate[rental_item][]" >
+												<option value="0">選択してください</option>
+												{html_options options=$OptionRental selected=$arr_post.rental_item}
+											</select>
+										</td>
 										<!-- 数量-->
 										<td style="width:50px"><input type="text" class="form-control" name="estimate[number][]" value="{$est.number|default:''}" /></td>
 										<!-- 単位-->
@@ -174,7 +179,12 @@
 									</tr>
 									{foreach from=$arr_post.estimate item="est" key="key"}
 									<tr id="record_{$key+1}" class="each_record">
-										<td><input type="text" class="form-control" name="estimate[title][]" value="{$est.title|default:''}" list="titles" /></td>
+										<td>
+											<select class="form-control" name="estimate[rental_item][]" >
+												<option value="0">選択してください</option>
+												{html_options options=$OptionRental selected=$est.rental_item}
+											</select>
+										</td>
 										<td style="width:50px"><input type="text" class="form-control" name="estimate[number][]" value="{$est.number|default:''}" /></td>
 										<td style="width:50px"><input type="text" class="form-control" name="estimate[unit][]" value="{$est.unit|default:''}" /></td>
 										<td style="width:100px"><input type="text" class="form-control" name="estimate[price][]" value="{$est.price|default:''}" list="prices" style="width:calc(100% - 1.5em);display:inline-block;"  />円</td>
@@ -210,3 +220,9 @@
 					</div>
 				</div>
 			</form>
+			{* 価格用 *}
+			<div style="display:none;">
+				{foreach from=$mst_rental item="rental"}
+				<span id="{$rental.id_rental}-{$rental.id_rental_parts}" data-price="{$rental.price}"></span>
+				{/foreach}
+			</div>

@@ -17,7 +17,7 @@ class FT_rental {
 	var $_DBconn = null;
 
 	// 主テーブル
-	var $_CtrTable   = "t_rental";
+	var $_CtrTable   = "mst_rental";
 	var $_CtrTablePk = "id_rental";
 
 	// コントロール機能（ログ用）
@@ -63,14 +63,18 @@ class FT_rental {
 	function GetSearchList( $search, $option = null, $limit = null ) {
 
 		// SQL配列
-		$creation_kit = array(  "select" => "*",
+		$creation_kit = array(  "select" => $this->_CtrTable . ".id_rental, "
+											. $this->_CtrTable . ".id_rental_category, "
+											. $this->_CtrTable . ".name, "
+											. $this->_CtrTable . ".unit, "
+											. $this->_CtrTable . ".comment ",
 								"from"   => $this->_CtrTable,
-								"where"  => "display_flg = 1",
-								"order"  => "display_num asc"
+								"where"  => $this->_CtrTable . ".display_flg = 1 ",
+								"order"  => $this->_CtrTable . ".display_num asc"
 							);
 
-		if( !empty( $search["search_rental_category"] ) ) {
-			$creation_kit["where"] .= "AND rental_category = " . $search["search_rental_category"] . " ";
+		if( !empty( $search["search_category"] ) ) {
+			$creation_kit["where"] .= " AND " . $this->_CtrTable . ".id_rental_category = " . $search["search_category"] . " ";
 		}
 
 		// 取得条件
@@ -95,7 +99,7 @@ class FT_rental {
 							 "page"  => $_PAGE_INFO );
 
 		} else {
-
+		
 			// 取得件数制限
 			if( !empty( $limit ) ) {
 				$creation_kit["limit"] = $limit;
@@ -105,34 +109,36 @@ class FT_rental {
 
 		// データ取得
 		$res = $this->_DBconn->selectCtrl( $creation_kit, $option );
-
-		// タグ許可
-		if( !empty($res["data"]) && is_array($res["data"]) ) {
-			foreach( $res["data"] as $key => $val ) {
-				if( !empty( $res["data"][$key]["comment"] ) ) {
-					$res["data"][$key]["comment"] = html_entity_decode( $res["data"][$key]["comment"] );
-				}
-			}
-		} elseif( !empty($res) && is_array($res) ) {
-			foreach( $res as $key => $val ) {
-				if( !empty( $res[$key]["comment"] ) ) {
-					$res[$key]["comment"] = html_entity_decode( $res[$key]["comment"] );
-				}
-			}
+		
+		$mst_res = array();
+		if( !empty( $res["data"] ) ){
+			$mst_res = $res["data"];
+			
+		} elseif( !empty( $res[0] ) ){
+			$mst_res = $res;
 		}
-
-		if( is_array( $res["data"] ) ) {
-			foreach( $res["data"] as $key => $val ) {
-				if( !empty( $res["data"][$key]["id_category"] ) ) {
-					$res["data"][$key]["id_category"] = explode( ",", $res["data"][$key]["id_category"] );
-				}
+		
+		// パーツを取得
+		if( !empty( $mst_res[0] ) ){
+			$creation_kit = array(  "select" => "t_rental_parts.*",
+									"from"   => "t_rental_parts",
+									"order"  => "t_rental_parts.id_rental_parts ASC"
+								);
+			
+			foreach( $mst_res as $key => $val ){
+				$creation_kit["where"] = "t_rental_parts.id_rental = " . $val["id_rental"];
+				
+				// データ取得
+				$mst_res[$key]["parts"] = $this->_DBconn->selectCtrl( $creation_kit, array("fetch" => _DB_FETCH) );
 			}
-		} elseif( is_array( $res ) ) {
-			foreach( $res as $key => $val ) {
-				if( !empty( $res[$key]["id_category"] ) ) {
-					$res[$key]["id_category"] = explode( ",", $res[$key]["id_category"] );
-				}
+			
+			if( !empty( $res["data"] ) ){
+				$res["data"] = $mst_res;
+				
+			} elseif( !empty( $res[0] ) ){
+				$res = $mst_res;
 			}
+			
 		}
 
 		// 戻り値

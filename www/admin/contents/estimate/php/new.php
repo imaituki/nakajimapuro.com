@@ -22,10 +22,9 @@ $_POST["estimate"] = array( array() );
 // smarty設定
 $smarty = new MySmarty("admin");
 $smarty->compile_dir .= "estimate/";
-
-// オプション配列
-$smarty->assign( "OptionStaff", $OptionStaff );
-
+$smarty->assign( "mst_rental", $mst_rental );
+// オプション
+$smarty->assign( "OptionRental", $OptionRental );
 // 表示
 $smarty->display( "new.tpl" );
 

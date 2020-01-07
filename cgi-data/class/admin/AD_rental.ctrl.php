@@ -537,35 +537,63 @@ class AD_rental {
 
 	}
 
-/*
 	//-------------------------------------------------------
-	// 関数名: GetOption
-	// 引  数: なし
-	// 戻り値: レンタル品カテゴリーオプション
-	// 内  容: レンタル品カテゴリーをオプション化して取得
+	// 関数名: GetOptionParts
+	// 引  数: $mode ( "option" : オプション配列として取得 "null" : リストとして取得 )
+	// 戻り値: レンタル品取得
+	// 内  容: レンタル品を取得
 	//-------------------------------------------------------
-	function GetOption() {
-
-		// SQL配列
-		$creation_kit = array(  "select" => "id_rental_category, title",
-								"from"   => "t_id_rental_category",
-								"where"  => "delete_flg = 0 AND display_flg = 1",
-								"order"  => "display_num ASC"
-							);
-		// データ取得
-		$arr_option = $this->_DBconn->selectCtrl( $creation_kit, array("fetch" => _DB_FETCH_ALL) );
-
-		// オプション用に成形
-		if( !empty($arr_option) ){
-			foreach( $arr_option as $val ){
-				$res[$val["id_rental_category"]] = $val["title"];
+	function GetOptionParts( $mode = null ) {
+		
+		
+		
+		if( !empty( $mode ) && ( $mode == "option" || $mode == "option-v2" ) ){
+			
+			// SQL配列
+			$creation_kit = array(  "select" => $this->_CtrTable . ".id_rental, " . 
+												$this->_CtrTable . ".id_rental_category, " . 
+												$this->_CtrTable . ".name," . 
+												$this->_CtrTable2 . ".id_rental_parts," . 
+												$this->_CtrTable2 . ".type",
+									"from"   => $this->_CtrTable,
+									"join"   => "left join " . $this->_CtrTable2 . " on " . $this->_CtrTable2 . ".id_rental = " . $this->_CtrTable . ".id_rental", 
+									"where"  => $this->_CtrTable . ".delete_flg = 0 AND " . 
+												$this->_CtrTable . ".display_flg = 1",
+									"order"  => $this->_CtrTable . ".display_num ASC"
+								);
+			// データ取得
+			$res = $this->_DBconn->selectCtrl( $creation_kit, array("fetch" => _DB_FETCH_ALL) );
+			// オプション用に成形
+			if( !empty( $res ) ){
+				foreach( $res as $val ){
+					if( $mode == "option" ){
+						$arr_option[$val["id_rental_category"]][$val["id_rental_parts"]] = $val["name"] . " " . $val["type"];
+					}else{
+						$arr_option[$val["id_rental"] . "-" . $val["id_rental_parts"]] = $val["name"] . " " . $val["type"];
+					}
+				}
 			}
+			// 戻り値
+			return $arr_option;
+		}else{
+			// SQL配列
+			$creation_kit = array(  "select" => $this->_CtrTable . ".id_rental, " . 
+												$this->_CtrTable . ".id_rental_category, " . 
+												$this->_CtrTable . ".name," . 
+												$this->_CtrTable2 . ".id_rental_parts," . 
+												$this->_CtrTable2 . ".price," . 
+												$this->_CtrTable2 . ".type",
+									"from"   => $this->_CtrTable,
+									"join"   => "left join " . $this->_CtrTable2 . " on " . $this->_CtrTable2 . ".id_rental = " . $this->_CtrTable . ".id_rental", 
+									"where"  => $this->_CtrTable . ".delete_flg = 0 AND " . 
+												$this->_CtrTable . ".display_flg = 1",
+									"order"  => $this->_CtrTable . ".display_num ASC"
+								);
+			// データ取得
+			$res = $this->_DBconn->selectCtrl( $creation_kit, array("fetch" => _DB_FETCH_ALL) );
+			// 戻り値
+			return $res;
 		}
-
-		// 戻り値
-		return $res;
-
 	}
-*/
 }
 ?>

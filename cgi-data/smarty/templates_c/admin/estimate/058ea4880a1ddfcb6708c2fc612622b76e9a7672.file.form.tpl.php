@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2019-12-17 12:13:10
+<?php /* Smarty version Smarty-3.1.18, created on 2020-01-07 22:06:48
          compiled from "/home/nakajimapuro/www/admin/contents/estimate/template/form.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:6708108775df847c6568c89-82913770%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '058ea4880a1ddfcb6708c2fc612622b76e9a7672' => 
     array (
       0 => '/home/nakajimapuro/www/admin/contents/estimate/template/form.tpl',
-      1 => 1576467188,
+      1 => 1578402407,
       2 => 'file',
     ),
   ),
@@ -15,22 +15,26 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.18',
+  'unifunc' => 'content_5df847c66dc5b5_27666113',
   'variables' => 
   array (
     'mode' => 0,
     'message' => 0,
     'arr_post' => 0,
+    'OptionRental' => 0,
     'est' => 0,
     'key' => 0,
     '_CONTENTS_DIR' => 0,
     '_CONTENTS_CONF_PATH' => 0,
+    'mst_rental' => 0,
+    'rental' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5df847c66dc5b5_27666113',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_5df847c66dc5b5_27666113')) {function content_5df847c66dc5b5_27666113($_smarty_tpl) {?><?php if (!is_callable('smarty_function_html_select_ken')) include '/home/nakajimapuro/cgi-data/smarty/libs/plugins/function.html_select_ken.php';
 if (!is_callable('smarty_function_html_select_time')) include '/home/nakajimapuro/cgi-data/smarty/libs/plugins/function.html_select_time.php';
+if (!is_callable('smarty_function_html_options')) include '/home/nakajimapuro/cgi-data/smarty/libs/plugins/function.html_options.php';
 ?>			<form class="form-horizontal" action="./<?php if ($_smarty_tpl->tpl_vars['mode']->value=="edit") {?>update<?php } else { ?>insert<?php }?>.php" method="post" enctype="multipart/form-data">
 				<div class="ibox-content">
 					<?php if ((($tmp = @$_smarty_tpl->tpl_vars['message']->value['ng']['all'])===null||$tmp==='' ? '' : $tmp)!=null) {?><p class="error"><?php echo $_smarty_tpl->tpl_vars['message']->value['ng']['all'];?>
@@ -215,8 +219,13 @@ if (!is_callable('smarty_function_html_select_time')) include '/home/nakajimapur
 								<tbody>
 									<tr id="base_record" style="display:none;">
 										<!-- 内容-->
-										<td><input type="text" class="form-control" name="estimate[title][]" value="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['est']->value['title'])===null||$tmp==='' ? '' : $tmp);?>
-" list="titles" /></td>
+										<td>
+											<select class="form-control" name="estimate[rental_item][]" >
+												<option value="0">選択してください</option>
+												<?php echo smarty_function_html_options(array('options'=>$_smarty_tpl->tpl_vars['OptionRental']->value,'selected'=>$_smarty_tpl->tpl_vars['arr_post']->value['rental_item']),$_smarty_tpl);?>
+
+											</select>
+										</td>
 										<!-- 数量-->
 										<td style="width:50px"><input type="text" class="form-control" name="estimate[number][]" value="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['est']->value['number'])===null||$tmp==='' ? '' : $tmp);?>
 " /></td>
@@ -249,8 +258,13 @@ $_smarty_tpl->tpl_vars["est"]->_loop = true;
 ?>
 									<tr id="record_<?php echo $_smarty_tpl->tpl_vars['key']->value+1;?>
 " class="each_record">
-										<td><input type="text" class="form-control" name="estimate[title][]" value="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['est']->value['title'])===null||$tmp==='' ? '' : $tmp);?>
-" list="titles" /></td>
+										<td>
+											<select class="form-control" name="estimate[rental_item][]" >
+												<option value="0">選択してください</option>
+												<?php echo smarty_function_html_options(array('options'=>$_smarty_tpl->tpl_vars['OptionRental']->value,'selected'=>$_smarty_tpl->tpl_vars['est']->value['rental_item']),$_smarty_tpl);?>
+
+											</select>
+										</td>
 										<td style="width:50px"><input type="text" class="form-control" name="estimate[number][]" value="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['est']->value['number'])===null||$tmp==='' ? '' : $tmp);?>
 " /></td>
 										<td style="width:50px"><input type="text" class="form-control" name="estimate[unit][]" value="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['est']->value['unit'])===null||$tmp==='' ? '' : $tmp);?>
@@ -299,4 +313,16 @@ $_smarty_tpl->tpl_vars["est"]->_loop = true;
 					</div>
 				</div>
 			</form>
-<?php }} ?>
+			
+			<div style="display:none;">
+				<?php  $_smarty_tpl->tpl_vars["rental"] = new Smarty_Variable; $_smarty_tpl->tpl_vars["rental"]->_loop = false;
+ $_from = $_smarty_tpl->tpl_vars['mst_rental']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars["rental"]->key => $_smarty_tpl->tpl_vars["rental"]->value) {
+$_smarty_tpl->tpl_vars["rental"]->_loop = true;
+?>
+				<span id="<?php echo $_smarty_tpl->tpl_vars['rental']->value['id_rental'];?>
+-<?php echo $_smarty_tpl->tpl_vars['rental']->value['id_rental_parts'];?>
+" data-price="<?php echo $_smarty_tpl->tpl_vars['rental']->value['price'];?>
+"></span>
+				<?php } ?>
+			</div><?php }} ?>
