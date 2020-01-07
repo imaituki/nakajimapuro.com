@@ -1,0 +1,123 @@
+@charset "utf-8";
+/*
+	Last Update:2019/11/18
+	Auther: iw
+*/
+/*===================================================================
+	#top
+===================================================================*/
+
+
+/*===================================================================
+	#rental
+===================================================================*/
+#rental .cat{border: 2px solid #e27a5e;}
+#rental .cat a{ color: #000; text-decoration: none; padding: 10px; display: block;}
+#rental .cat a:hover{background:#e27a5e;}
+
+#rental table th {font-weight: bold; text-align: center;}
+
+.thumbnail { max-width: 700px; margin: 0 auto 5px; padding: 0;}
+.thumbnail img,.thumbnail-nav img{ width: 100%;}
+.thumbnail-thumb { max-width: 700px; margin: 0 auto;}
+.thumbnail-thumb li { margin: 5px;}
+.thumbnial-thumb .slick-next { right: 20px; z-index: 100;}
+.thumbnail-thumb .slick-prev { left: 15px; z-index: 100;}
+.thumbnail-thumb .slick-current { opacity: 0.5;}
+.thumbnail-thumb div div div { cursor: pointer;}
+.thumbnail-thumb .slick-track {width:100%!important;}
+.thumbnail-thumb .slick-slide{width: calc(100%/5)!important;}
+/*===================================================================
+	hl
+===================================================================*/
+.hl_1{background: #FFC000; text-align: center; font-weight: bold;}
+
+/*===================================================================
+	button
+===================================================================*/
+
+/*===================================================================
+	color
+===================================================================*/
+/* background */
+.bg0 { background-color:#fff; }
+.bg_black { background-color:#222222; }
+.bg_gray { background-color:#f1f4f7; }
+
+.bg_blue { background-color:#04326a; }
+.bg_lblue { background-color:#BDD7EE; }
+.bg_lblueo { background-color:#f7fbfe; }
+
+.bg_dot { background:url(../image/contents/bg_dot.png) repeat center top; }
+.bg_town { background:url(../image/contents/bg_town.png) repeat-x bottom center; }
+
+.c_ { color:#444 !important; }
+.c0 { color:#fff !important; }
+.cb { color:#04326a !important; }
+
+
+/*===================================================================
+	#common
+===================================================================*/
+.flex_c{display: flex; vertical-align: middle; align-items: center;}
+
+/*===================================================================
+	pc / sp
+===================================================================*/
+.mb0  { margin-bottom:0 !important; }
+.mb5  { margin-bottom:5px !important; }
+.mb10 { margin-bottom:10px !important; }
+.mb15 { margin-bottom:15px !important; }
+.mb20 { margin-bottom:20px !important; }
+.mb30 { margin-bottom:30px !important; }
+.mb40 { margin-bottom:40px !important; }
+.mb50 { margin-bottom:50px !important; }
+.mb100 { margin-bottom:100px !important; }
+
+.pos_re{position: relative;}
+.pos_ab{position: absolute;}
+
+.disp_b { display:block; }
+.disp_ib { display:inline-block; }
+.disp_tbl { display:table; width:100%; height:100%; }
+.disp_tbl2 { display:table;}
+.disp_td { display:table-cell; vertical-align:middle; }
+
+.bor5 { display:block; border-radius:5px; overflow:hidden; }
+.bor10 { display:block; border-radius:10px; overflow:hidden; }
+.bor50 { display:block; border-radius:50%; overflow:hidden; }
+
+.img_sq, .img_rect, .img_back { background-position:center center; background-repeat:no-repeat; background-size:cover; }
+.img_sq > img, .img_rect > img, .img_back > img { visibility:hidden; }
+
+.parallax, .parallax:before, .parallax:after { transition:all .7s; }
+body.pc .parallax[data-parallax-in="vertical"],
+body.pc .parallax[data-parallax-in="vertical2"],
+body.pc .parallax[data-parallax-in="vertical3"] { opacity:1; transform:translateY(0); -webkit-transform:translateY(0); -ms-transform:translateY(0); }
+body.pc .parallax[data-parallax-in="vertical"]:not(.parallax_on),
+body.pc .parallax[data-parallax-in="vertical2"]:not(.parallax_on),
+body.pc .parallax[data-parallax-in="vertical3"]:not(.parallax_on) { opacity:0 !important; }
+body.pc .parallax[data-parallax-in="vertical"]:not(.parallax_on)  { transform:translateY(30px); -webkit-transform:translateY(30px); -ms-transform:translateY(30px); }
+body.pc .parallax[data-parallax-in="vertical2"]:not(.parallax_on) { transform:translateY(60px); -webkit-transform:translateY(60px); -ms-transform:translateY(60px); }
+body.pc .parallax[data-parallax-in="vertical3"]:not(.parallax_on) { transform:translateY(90px); -webkit-transform:translateY(90px); -ms-transform:translateY(90px); }
+body.pc .parallax[data-parallax-in="left"] { position:relative; left:0; }
+body.pc .parallax[data-parallax-in="left"]:not(.parallax_on) { left:-100vw; }
+
+/* font */
+.mincho { font-family:"ヒラギノ明朝 ProN W3","Hiragino Mincho ProN","Sawarabi Mincho","游明朝","YuMincho","HG明朝E","ＭＳ Ｐ明朝","ＭＳ 明朝",serif; }
+.fa_b:before,
+.fa_a:after { font-family:"Font Awesome 5 Free"; display:inline-block; font-weight:900; font-style:normal; font-variant:normal; text-rendering:auto;
+	line-height:1; -moz-osx-font-smoothing:grayscale; -webkit-font-smoothing:antialiased; }
+
+@media (min-width: 768px){
+	.pc_none { display:none !important; }
+}
+@media (max-width: 767px){
+	.sp_none { display:none !important; }
+	.sp_table_wrap { overflow-x:auto; width:100%; white-space:nowrap; }
+	.sp_table_wrap::-webkit-scrollbar { height:10px; }
+	.sp_table_wrap::-webkit-scrollbar-track { background:#F1F1F1; }
+	.sp_table_wrap::-webkit-scrollbar-thumb { background:#BCBCBC; }
+	.sp_table_wrap table { width:100%; }
+	.sp_table_wrap table { font-size:13px !important; -webkit-text-size-adjust:100%; -moz-text-size-adjust:none; -ms-text-size-adjust:100%; text-size-adjust:100%; }
+}

@@ -276,7 +276,7 @@ td.pos_al > div,lightBoxGallery { text-align:left; }
     }
 
     .tbl_calendar tbody td div.water-school {
-      background:#9dff5f;
+      background:rgba(119, 206, 253, 0.705);
     }
 
     .tbl_calendar tbody td div.cancel {

@@ -37,7 +37,7 @@ class MySmarty extends Smarty {
 		$this->assign( "_IMAGEFULLPATH" , _IMAGEFULLPATH  );
 		$this->assign( "_IMAGEPATH"     , _IMAGEPATH      );
 		$this->assign( "_IMAGEROOTPATH" , _IMAGEROOTPATH  );
-		
+
 		// 各種設定
 		switch( $type ) {
 			case "admin":
@@ -65,7 +65,7 @@ class MySmarty extends Smarty {
 		$this->assign( "_CONTENTS_CONF_PATH", _CONTENTS_CONF_PATH );
 		$this->assign( "_CONTENTS_DIR"      , _CONTENTS_DIR       ); // ディレクトリ名
 		$this->assign( "_CONTENTS_ID"       , _CONTENTS_ID        ); // 当該データベースのID名
-		$this->assign( "_CONTENTS_NAME"     , _CONTENTS_NAME      ); // 
+		$this->assign( "_CONTENTS_NAME"     , _CONTENTS_NAME      ); //
 
 		// オプション
 		// $this->assign( "OptionInfoCategory" , $OptionInfoCategory );
@@ -94,8 +94,9 @@ class MySmarty extends Smarty {
 
 		// 汎用配列
 		$this->assign( "_INFO" , $_INFO  ); // 詳しくはfront.iniに記載
-		// オプション
-		// $this->assign( "OptionInfoCategory" , $OptionInfoCategory );
+
+		// 変数
+		$this->assign( "mst_siteconf"        , $mst_siteconf       );
 
 
 		// 変数 - インクルードパス

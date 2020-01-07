@@ -15,7 +15,7 @@ require "./config.ini";
 //  更新処理
 //----------------------------------------
 // 操作クラス
-$objManage      = new DB_manage( _DNS,1 );
+$objManage      = new DB_manage( _DNS);
 $objEstimate = new AD_estimate( $objManage );
 
 // データ変換

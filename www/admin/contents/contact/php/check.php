@@ -15,7 +15,7 @@ require "./config.ini";
 //  確認処理
 //----------------------------------------
 // 操作クラス
-$objManage  = new DB_manage( _DNS,1 );
+$objManage  = new DB_manage( _DNS );
 $objContact = new AD_contact( $objManage );
 
 // トランザクション

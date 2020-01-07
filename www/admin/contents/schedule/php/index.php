@@ -95,8 +95,6 @@ if( !empty( $t_estimate ) && is_array( $t_estimate ) ){
 	}
 }
 
-disp_arr($mst_calendar);
-disp_arr($t_estimate);
 //----------------------------------------
 // 表示
 //----------------------------------------
