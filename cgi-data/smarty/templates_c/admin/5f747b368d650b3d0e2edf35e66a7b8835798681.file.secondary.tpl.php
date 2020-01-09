@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2020-01-06 19:38:44
+<?php /* Smarty version Smarty-3.1.18, created on 2020-01-07 22:19:44
          compiled from "/home/nakajimapuro/www//admin/common/inc/secondary.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:14389505055df6fcf6a9a065-04143765%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '5f747b368d650b3d0e2edf35e66a7b8835798681' => 
     array (
       0 => '/home/nakajimapuro/www//admin/common/inc/secondary.tpl',
-      1 => 1578307121,
+      1 => 1578356195,
       2 => 'file',
     ),
   ),
@@ -50,6 +50,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 /contents/estimate/"><i class="fa fa-file-o" aria-hidden="true"></i></i><span class="nav-label">見積り管理</span></a></li>
 			<li<?php if ($_smarty_tpl->tpl_vars['manage']->value=="schedule") {?> class="active"<?php }?>><a href="<?php echo $_smarty_tpl->tpl_vars['_ADMIN']->value['home'];?>
 /contents/schedule/"><i class="fa fa-calendar" aria-hidden="true"></i><span class="nav-label">カレンダー</span></a></li>
+			<li<?php if ($_smarty_tpl->tpl_vars['manage']->value=="loan") {?> class="active"<?php }?>><a href="<?php echo $_smarty_tpl->tpl_vars['_ADMIN']->value['home'];?>
+/contents/loan/"><i class="fa fa-calendar" aria-hidden="true"></i><span class="nav-label">品別貸出カレンダー</span></a></li>
 			<li<?php if ($_smarty_tpl->tpl_vars['manage']->value=="work") {?> class="active"<?php }?>><a href="<?php echo $_smarty_tpl->tpl_vars['_ADMIN']->value['home'];?>
 /contents/work/"><i class="fa fa-users" aria-hidden="true"></i><span class="nav-label">アルバイト応募管理</span></a></li>
 			<li<?php if ($_smarty_tpl->tpl_vars['manage']->value=="contact") {?> class="active"<?php }?>><a href="<?php echo $_smarty_tpl->tpl_vars['_ADMIN']->value['home'];?>

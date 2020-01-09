@@ -120,7 +120,15 @@ class FT_rental {
 		
 		// パーツを取得
 		if( !empty( $mst_res[0] ) ){
-			$creation_kit = array(  "select" => "t_rental_parts.*",
+			$creation_kit = array(  "select" => "t_rental_parts.id_rental_parts, 
+																t_rental_parts.id_rental, 
+																t_rental_parts.comment, 
+																t_rental_parts.price, 
+																t_rental_parts.image1, 
+																t_rental_parts.image2, 
+																t_rental_parts.image3, 
+																t_rental_parts.image4, 
+																t_rental_parts.image5",
 									"from"   => "t_rental_parts",
 									"order"  => "t_rental_parts.id_rental_parts ASC"
 								);
@@ -129,7 +137,7 @@ class FT_rental {
 				$creation_kit["where"] = "t_rental_parts.id_rental = " . $val["id_rental"];
 				
 				// データ取得
-				$mst_res[$key]["parts"] = $this->_DBconn->selectCtrl( $creation_kit, array("fetch" => _DB_FETCH) );
+				$mst_res[$key]["parts"] = $this->_DBconn->selectCtrl( $creation_kit, array("fetch" => _DB_FETCH_ALL) );
 			}
 			
 			if( !empty( $res["data"] ) ){
@@ -168,15 +176,23 @@ class FT_rental {
 
 		// データ取得
 		$res = $this->_DBconn->selectCtrl( $creation_kit, array( "fetch" => _DB_FETCH ) );
+		
+		if( !empty( $res["id_rental"] ) ){
+			$creation_kit = array(  "select" => "t_rental_parts.*",
+									"from"   => "t_rental_parts",
+									"where" => "t_rental_parts.id_rental = " . $res["id_rental"],
+									"order"  => "t_rental_parts.id_rental_parts ASC"
+								);
+			
+			// データ取得
+			$res["parts"] = $this->_DBconn->selectCtrl( $creation_kit, array("fetch" => _DB_FETCH_ALL) );
+			
+		}
 
 		// タグ許可
 		if( !empty($res["comment"]) ){
 			$res["comment"] = html_entity_decode( $res["comment"] );
 		}
-
-		if( !empty( $res["id_category"] ) ){
-					$res["id_category"] = explode( ",", $res["id_category"] );
-				}
 
 		// 戻り値
 		return $res;

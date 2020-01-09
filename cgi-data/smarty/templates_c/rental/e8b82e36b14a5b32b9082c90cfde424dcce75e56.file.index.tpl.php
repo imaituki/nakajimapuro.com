@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2020-01-07 21:59:38
+<?php /* Smarty version Smarty-3.1.18, created on 2020-01-08 16:20:11
          compiled from "./index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:9618262315e13d4d10c4a19-61793765%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'e8b82e36b14a5b32b9082c90cfde424dcce75e56' => 
     array (
       0 => './index.tpl',
-      1 => 1578401975,
+      1 => 1578468007,
       2 => 'file',
     ),
   ),
@@ -24,11 +24,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'template_header' => 0,
     'OptionRentalCategory' => 0,
     'key' => 0,
-    'arr_get' => 0,
     'rental_category' => 0,
     'mst_rental' => 0,
     'data' => 0,
-    'page_navi' => 0,
+    'parts' => 0,
     'template_footer' => 0,
   ),
   'has_nocache_code' => false,
@@ -70,7 +69,6 @@ $_smarty_tpl->tpl_vars["rental_category"]->_loop = true;
  $_smarty_tpl->tpl_vars["key"]->value = $_smarty_tpl->tpl_vars["rental_category"]->key;
 ?>
 						<li><a href="/rental/<?php if ($_smarty_tpl->tpl_vars['key']->value!=0) {?>?sid=<?php echo $_smarty_tpl->tpl_vars['key']->value;?>
-<?php }?><?php if ($_smarty_tpl->tpl_vars['arr_get']->value['date']!=null) {?>&date=<?php echo $_smarty_tpl->tpl_vars['arr_get']->value['date'];?>
 <?php }?>"><?php echo $_smarty_tpl->tpl_vars['rental_category']->value;?>
 </a></li>
 <?php } ?>
@@ -86,7 +84,7 @@ $_smarty_tpl->tpl_vars["rental_category"]->_loop = true;
 					<table class="tbl_list mb30">
 						<thead>
 							<tr>
-								<th>品名</th>
+								<th colspan="2">品名</th>
 								<th>仕様</th>
 								<th>単価</th>
 								<th>個数</th>
@@ -99,34 +97,67 @@ foreach ($_from as $_smarty_tpl->tpl_vars["data"]->key => $_smarty_tpl->tpl_vars
 $_smarty_tpl->tpl_vars["data"]->_loop = true;
 ?>
 							<tr>
-								<td><a href="detail.php?id=<?php echo $_smarty_tpl->tpl_vars['data']->value['id_rental'];?>
-"><?php echo $_smarty_tpl->tpl_vars['data']->value['name'];?>
-</a></td>
-								<td><?php echo $_smarty_tpl->tpl_vars['data']->value['parts']['comment'];?>
+								<td class="image">
+<?php if ($_smarty_tpl->tpl_vars['data']->value['parts'][0]['image1']) {?>
+	<?php if ($_smarty_tpl->tpl_vars['data']->value['parts'][1]) {?>
+		<a href="detail.php?id=<?php echo $_smarty_tpl->tpl_vars['data']->value['id_rental'];?>
+"><div class="img_rect"><img src="/common/photo/rental/image1/s_<?php echo $_smarty_tpl->tpl_vars['data']->value['parts'][0]['image1'];?>
+"></div></a>
+	<?php } else { ?>
+		<a href="/common/photo/rental/image1/l_<?php echo $_smarty_tpl->tpl_vars['data']->value['parts'][0]['image1'];?>
+" target="_blank" rel="lightbox[<?php echo $_smarty_tpl->tpl_vars['data']->value['id_rental'];?>
+]" title="<?php echo mb_convert_kana($_smarty_tpl->tpl_vars['parts']->value['type'],'a','UTF-8');?>
+"><div class="img_rect"><img src="/common/photo/rental/image1/s_<?php echo $_smarty_tpl->tpl_vars['data']->value['parts'][0]['image1'];?>
+" alt="<?php echo $_smarty_tpl->tpl_vars['data']->value['name'];?>
+"></div></a>
+		<?php if ($_smarty_tpl->tpl_vars['data']->value['parts'][0]['image2']) {?><a href="/common/photo/rental/image2/l_<?php echo $_smarty_tpl->tpl_vars['data']->value['parts'][0]['image2'];?>
+" target="_blank" rel="lightbox[<?php echo $_smarty_tpl->tpl_vars['data']->value['id_rental'];?>
+]" title="<?php echo mb_convert_kana($_smarty_tpl->tpl_vars['parts']->value['type'],'a','UTF-8');?>
+" class="sub"><?php echo $_smarty_tpl->tpl_vars['data']->value['name'];?>
+</a><?php }?>
+		<?php if ($_smarty_tpl->tpl_vars['data']->value['parts'][0]['image3']) {?><a href="/common/photo/rental/image3/l_<?php echo $_smarty_tpl->tpl_vars['data']->value['parts'][0]['image3'];?>
+" target="_blank" rel="lightbox[<?php echo $_smarty_tpl->tpl_vars['data']->value['id_rental'];?>
+]" title="<?php echo mb_convert_kana($_smarty_tpl->tpl_vars['parts']->value['type'],'a','UTF-8');?>
+" class="sub"><?php echo $_smarty_tpl->tpl_vars['data']->value['name'];?>
+</a><?php }?>
+		<?php if ($_smarty_tpl->tpl_vars['data']->value['parts'][0]['image4']) {?><a href="/common/photo/rental/image4/l_<?php echo $_smarty_tpl->tpl_vars['data']->value['parts'][0]['image4'];?>
+" target="_blank" rel="lightbox[<?php echo $_smarty_tpl->tpl_vars['data']->value['id_rental'];?>
+]" title="<?php echo mb_convert_kana($_smarty_tpl->tpl_vars['parts']->value['type'],'a','UTF-8');?>
+" class="sub"><?php echo $_smarty_tpl->tpl_vars['data']->value['name'];?>
+</a><?php }?>
+		<?php if ($_smarty_tpl->tpl_vars['data']->value['parts'][0]['image5']) {?><a href="/common/photo/rental/image5/l_<?php echo $_smarty_tpl->tpl_vars['data']->value['parts'][0]['image5'];?>
+" target="_blank" rel="lightbox[<?php echo $_smarty_tpl->tpl_vars['data']->value['id_rental'];?>
+]" title="<?php echo mb_convert_kana($_smarty_tpl->tpl_vars['parts']->value['type'],'a','UTF-8');?>
+" class="sub"><?php echo $_smarty_tpl->tpl_vars['data']->value['name'];?>
+</a><?php }?>
+	 <?php }?>
+<?php }?>
+								</td>
+								<td class="title"><?php if ($_smarty_tpl->tpl_vars['data']->value['parts'][1]) {?><a href="detail.php?id=<?php echo $_smarty_tpl->tpl_vars['data']->value['id_rental'];?>
+"><?php echo mb_convert_kana($_smarty_tpl->tpl_vars['data']->value['name'],"a","UTF-8");?>
+</a><?php } else { ?><?php echo mb_convert_kana($_smarty_tpl->tpl_vars['data']->value['name'],"a","UTF-8");?>
+<?php }?></td>
+								<td class="comment"><?php if ($_smarty_tpl->tpl_vars['data']->value['parts'][0]['type']) {?><?php echo mb_convert_kana($_smarty_tpl->tpl_vars['data']->value['parts'][0]['type'],"a","UTF-8");?>
+／<?php }?><?php echo mb_convert_kana($_smarty_tpl->tpl_vars['data']->value['parts'][0]['comment'],"a","UTF-8");?>
 </td>
-								<td class="pos_ar"><?php echo $_smarty_tpl->tpl_vars['data']->value['parts']['price'];?>
-</td>
-								<td class="number"><input type="text" name="item[<?php echo $_smarty_tpl->tpl_vars['data']->value['parts']['id_rental_parts'];?>
+								<td class="price"><?php if ($_smarty_tpl->tpl_vars['data']->value['parts'][0]['price']=="0") {?>要ご相談<?php } else { ?><?php echo number_format($_smarty_tpl->tpl_vars['data']->value['parts'][0]['price']);?>
+<?php }?></td>
+								<td class="number">
+									<?php if ($_smarty_tpl->tpl_vars['data']->value['parts'][1]) {?><a href="detail.php?id=<?php echo $_smarty_tpl->tpl_vars['data']->value['id_rental'];?>
+" class="btn_list"><i class="fa fa-caret-right"></i>タイプを選ぶ</a>
+									<?php } else { ?><input type="text" name="item[<?php echo $_smarty_tpl->tpl_vars['data']->value['parts'][0]['id_rental_parts'];?>
 ]"><?php echo $_smarty_tpl->tpl_vars['data']->value['unit'];?>
-</td>
+
+									<?php }?>
+								</td>
 							</tr>
 <?php } ?>
 						</tbody>
 					</table>
-					<?php if ($_smarty_tpl->tpl_vars['page_navi']->value['LinkPage']) {?>
-					<div class="list_pager">
-						<ul>
-							<?php echo $_smarty_tpl->tpl_vars['page_navi']->value['LinkPage'];?>
-
-						</ul>
-					</div>
-					<?php }?>
 				</div>
 			</div>
 		</div>
 	</section>
-
-
 </div>
 </main>
 <?php echo $_smarty_tpl->getSubTemplate ($_smarty_tpl->tpl_vars['template_footer']->value, $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, null, array(), 0);?>

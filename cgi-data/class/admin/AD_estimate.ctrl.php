@@ -213,8 +213,14 @@ class AD_estimate {
 
 		if( !empty( $estimate ) && is_array( $estimate ) ){
 			foreach( $estimate as $key => $val ){
+				// レンタルID整形
+				unset( $rid );
+				if( !empty( $val["rental_item"] ) ) {
+					$rid = explode( "-", $val["rental_item"] );
+				}
 				$arrEstimate[$key] = array( "id_estimate" => $id_estimate,
-											"title" => $val["title"],
+											"id_rental" => $rid[0],
+											"id_rental_parts" => $rid[1],
 											"number" => $val["number"],
 											"unit" => $val["unit"],
 											"price" => $val["price"],
@@ -276,9 +282,15 @@ class AD_estimate {
 		$arrVal["entry_date"] = $arrVal["update_date"];
 		if( !empty( $estimate ) && is_array( $estimate ) ){
 			foreach( $estimate as $key => $val ){
+				// レンタルID整形
+				unset( $rid );
+				if( !empty( $val["rental_item"] ) ) {
+					$rid = explode( "-", $val["rental_item"] );
+				}
 				$arrEstimate[$key] = array( "id_estimate_detail" => $val["id_estimate_detail"],
 											"id_estimate" => $arrVal["id_estimate"],
-											"title" => $val["title"],
+											"id_rental" => $rid[0],
+											"id_rental_parts" => $rid[1],
 											"number" => $val["number"],
 											"unit" => $val["unit"],
 											"price" => $val["price"],
@@ -482,6 +494,11 @@ class AD_estimate {
 		// データ取得
 		$res["estimate"] = $this->_DBconn->selectCtrl( $creation_kit2, array( "fetch" => _DB_FETCH_ALL ) );
 
+		if( !empty( $res["estimate"] ) && is_array( $res["estimate"] ) ){
+			foreach ( $res["estimate"]  as $key => $val ) {
+				$res["estimate"][$key]["rental_item"] = $val["id_rental"] . "-" . $val["id_rental_parts"];
+			}
+		}
 		// 戻り値
 		return $res;
 

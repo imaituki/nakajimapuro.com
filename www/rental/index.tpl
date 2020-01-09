@@ -25,7 +25,7 @@
 					<h3><i class="fa fa-search"></i>カテゴリから探す</h3>
 					<ul>
 {foreach from=$OptionRentalCategory item="rental_category" key="key" name="LoopSeminnar"}
-						<li><a href="/rental/{if $key != 0}?sid={$key}{/if}{if $arr_get.date != NULL}&date={$arr_get.date}{/if}">{$rental_category}</a></li>
+						<li><a href="/rental/{if $key != 0}?sid={$key}{/if}">{$rental_category}</a></li>
 {/foreach}
 					</ul>
 				</div>
@@ -39,7 +39,7 @@
 					<table class="tbl_list mb30">
 						<thead>
 							<tr>
-								<th>品名</th>
+								<th colspan="2">品名</th>
 								<th>仕様</th>
 								<th>単価</th>
 								<th>個数</th>
@@ -48,80 +48,35 @@
 						<tbody>
 {foreach from=$mst_rental item="data"}
 							<tr>
-								<td><a href="detail.php?id={$data.id_rental}">{$data.name}</a></td>
-								<td>{$data.parts.comment}</td>
-								<td class="pos_ar">{$data.parts.price}</td>
-								<td class="number"><input type="text" name="item[{$data.parts.id_rental_parts}]">{$data.unit}</td>
+								<td class="image">
+{if $data.parts.0.image1}
+	{if $data.parts.1}
+		<a href="detail.php?id={$data.id_rental}"><div class="img_rect"><img src="/common/photo/rental/image1/s_{$data.parts.0.image1}"></div></a>
+	{else}
+		<a href="/common/photo/rental/image1/l_{$data.parts.0.image1}" target="_blank" rel="lightbox[{$data.id_rental}]" title="{$parts.type|mb_convert_kana:'a':'UTF-8'}"><div class="img_rect"><img src="/common/photo/rental/image1/s_{$data.parts.0.image1}" alt="{$data.name}"></div></a>
+		{if $data.parts.0.image2}<a href="/common/photo/rental/image2/l_{$data.parts.0.image2}" target="_blank" rel="lightbox[{$data.id_rental}]" title="{$parts.type|mb_convert_kana:'a':'UTF-8'}" class="sub">{$data.name}</a>{/if}
+		{if $data.parts.0.image3}<a href="/common/photo/rental/image3/l_{$data.parts.0.image3}" target="_blank" rel="lightbox[{$data.id_rental}]" title="{$parts.type|mb_convert_kana:'a':'UTF-8'}" class="sub">{$data.name}</a>{/if}
+		{if $data.parts.0.image4}<a href="/common/photo/rental/image4/l_{$data.parts.0.image4}" target="_blank" rel="lightbox[{$data.id_rental}]" title="{$parts.type|mb_convert_kana:'a':'UTF-8'}" class="sub">{$data.name}</a>{/if}
+		{if $data.parts.0.image5}<a href="/common/photo/rental/image5/l_{$data.parts.0.image5}" target="_blank" rel="lightbox[{$data.id_rental}]" title="{$parts.type|mb_convert_kana:'a':'UTF-8'}" class="sub">{$data.name}</a>{/if}
+	 {/if}
+{/if}
+								</td>
+								<td class="title">{if $data.parts.1}<a href="detail.php?id={$data.id_rental}">{$data.name|mb_convert_kana:"a":"UTF-8"}</a>{else}{$data.name|mb_convert_kana:"a":"UTF-8"}{/if}</td>
+								<td class="comment">{if $data.parts.0.type}{$data.parts.0.type|mb_convert_kana:"a":"UTF-8"}／{/if}{$data.parts.0.comment|mb_convert_kana:"a":"UTF-8"}</td>
+								<td class="price">{if $data.parts.0.price == "0"}要ご相談{else}{$data.parts.0.price|number_format}{/if}</td>
+								<td class="number">
+									{if $data.parts.1}<a href="detail.php?id={$data.id_rental}" class="btn_list"><i class="fa fa-caret-right"></i>タイプを選ぶ</a>
+									{else}<input type="text" name="item[{$data.parts.0.id_rental_parts}]">{$data.unit}
+									{/if}
+								</td>
 							</tr>
 {/foreach}
 						</tbody>
 					</table>
-					{if $page_navi.LinkPage}
-					<div class="list_pager">
-						<ul>
-							{$page_navi.LinkPage}
-						</ul>
-					</div>
-					{/if}
 				</div>
 			</div>
 		</div>
 	</section>
-
-{*	<section>
-		<div class="wrapper">
-			<div class="center">
-				<div class="row">
-					<div class="col-xs-3">
-						{foreach from=$OptionRentalCategory item="rental_category" key="key" name="LoopSeminnar"}
-						<ul>
-							<li class="cat"><a href="./{if $key != 0}?sid={$key}{/if}{if $arr_get.date != NULL}&date={$arr_get.date}{/if}">{$rental_category}</a></li>
-						</ul>
-						{/foreach}
-					</div>
-					<div class="col-xs-9">
-						<p>※弊社で搬入・設営・搬出・撤去を行う場合は別途￥４０，０００+消費税（岡山県内）必要となります。</p>
-						<table border="1" width="100%">
-							<tr>
-								<th>内容</th>
-								<th>数量</th>
-								<th>単位</th>
-								<th>単価</th>
-								<th>消費税</th>
-								<th>単価合計</th>
-								<th>金額</th>
-							</tr>
-							<tr>
-								<td><a href="###"  rel="lightbox">会議室</a></td>
-								<td class="pos_ar">0</td>
-								<td class="pos_ar">卓</td>
-								<td class="pos_ar">700</td>
-								<td class="pos_ar">0</td>
-								<td class="pos_ar">0</td>
-								<td class="pos_ar">0</td>
-							</tr>
-							<tr>
-								<td><a href="###"  rel="lightbox">会議室</a></td>
-								<td class="pos_ar">0</td>
-								<td class="pos_ar">卓</td>
-								<td class="pos_ar">700</td>
-								<td class="pos_ar">0</td>
-								<td class="pos_ar">0</td>
-								<td class="pos_ar">0</td>
-							</tr>
-						</table>
-					</div>
-				</div>
-				{if $page_navi.LinkPage}
-				<div class="list_pager">
-					<ul>
-						{$page_navi.LinkPage}
-					</ul>
-				</div>
-				{/if}
-			</div>
-		</div>
-	</section>*}
 </div>
 </main>
 {include file=$template_footer}

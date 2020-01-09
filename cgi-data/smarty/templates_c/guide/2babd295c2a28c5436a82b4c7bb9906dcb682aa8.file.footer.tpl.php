@@ -1,6 +1,6 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2020-01-08 18:07:29
+<?php /* Smarty version Smarty-3.1.18, created on 2020-01-08 16:46:40
          compiled from "/home/nakajimapuro/www//common/include/footer.tpl" */ ?>
-<?php /*%%SmartyHeaderCode:19162581395e13d4d12ce357-29129213%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
+<?php /*%%SmartyHeaderCode:5787672745e1587f3e7eca3-99733386%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
   'file_dependency' => 
   array (
@@ -11,15 +11,15 @@ $_valid = $_smarty_tpl->decodeProperties(array (
       2 => 'file',
     ),
   ),
-  'nocache_hash' => '19162581395e13d4d12ce357-29129213',
+  'nocache_hash' => '5787672745e1587f3e7eca3-99733386',
   'function' => 
   array (
   ),
   'version' => 'Smarty-3.1.18',
-  'unifunc' => 'content_5e13d4d12d77f1_40247592',
+  'unifunc' => 'content_5e1587f3e804f0_41315152',
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_5e13d4d12d77f1_40247592')) {function content_5e13d4d12d77f1_40247592($_smarty_tpl) {?><footer>
+<?php if ($_valid && !is_callable('content_5e1587f3e804f0_41315152')) {function content_5e1587f3e804f0_41315152($_smarty_tpl) {?><footer>
 <div id="foot">
 	<div class="foot_wrap">
 		<address class="mb10">倉敷市亀山1004-3<br>

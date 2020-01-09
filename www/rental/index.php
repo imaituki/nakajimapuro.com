@@ -1,21 +1,21 @@
 <?php
 //-------------------------------------------------------------------
-// 作成日：2019/10/11
-// 作成者：岡田
+// 作成日：2020/01/07
+// 作成者：iw
 // 内  容：rental
 //-------------------------------------------------------------------
-
 //----------------------------------------
 //  共通設定
 //----------------------------------------
 require "./config.ini";
 
+
 //----------------------------------------
 //  データ取得
 //----------------------------------------
 // 操作クラス
-$objManage      = new DB_manage( _DNS );
-$objRental      = new FT_rental( $objManage );
+$objManage = new DB_manage( _DNS );
+$objRental = new FT_rental( $objManage );
 
 // 検索条件
 $default_sid = array_keys($OptionRentalCategory);
@@ -27,7 +27,7 @@ $mst_rental = $objRental->GetSearchList( $search,  array( "fetch" => _DB_FETCH_A
 
 // クラス削除
 unset( $objRental );
-unset( $objManage      );
+unset( $objManage );
 
 
 //----------------------------------------
@@ -44,7 +44,5 @@ $smarty->assign( "OptionRentalCategory", $OptionRentalCategory );
 
 // 表示
 $smarty->display("index.tpl");
-
-disp_arr( $mst_rental );
 
 ?>
