@@ -9,11 +9,11 @@
 				<ul>
 					<li class="navi1"><a href="/rental/">レンタル品・料金</a></li>
 					<li class="navi2"><a href="/guide/#flow">レンタルの流れ</a></li>
-					<li class="navi3"><a href="/guide/#pay">お支払い方法</a></li>
+					{*<li class="navi3"><a href="/guide/#pay">お支払い方法</a></li>*}
 					<li class="navi4"><a href="/guide/#cancel">キャンセル料について</a></li>
 					<li class="navi5"><a href="/company/">会社概要</a></li>
-					<li class="navi6"><a href="/recruit/">アルバイト募集</a></li>
-					{*<li class="navi1"><a href="/information/">お知らせ</a></li>*}
+					{*<li class="navi6"><a href="/recruit/">アルバイト募集</a></li>
+					<li class="navi1"><a href="/information/">お知らせ</a></li>*}
 					<li class="visible-only"><a href="/privacy/">個人情報の取り扱いについて</a></li>
 				</ul>
 			</div>
